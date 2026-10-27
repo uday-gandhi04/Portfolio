@@ -1,0 +1,388 @@
+const github = (repo) => `https://github.com/${repo}`;
+const blenderImage = (file) =>
+  `https://raw.githubusercontent.com/uday-gandhi04/Blender/main/${file}`;
+
+// Project order follows the town layout: strongest and most interactive
+// work is placed closer to the entrance, with supporting experiments behind.
+export const projects = [
+  {
+    id: 'moboxd',
+    name: 'MoBoxd',
+    subtitle: 'Social Platform',
+    type: 'social',
+    position: [-13, 12],
+    color: '#b6a081',
+    accent: '#d580ff',
+    icon: '●',
+    category: 'Full-stack product',
+    status: 'Live demo',
+    description:
+      'A Letterboxd-inspired social platform for sharing everyday moments, publishing posts and reviews, and competing in ranking battles.',
+    stack: ['React + Vite', 'Bootstrap 5', 'Node.js', 'Express', 'MongoDB', 'Cloudinary', 'JWT'],
+    highlights: [
+      'Authentication and account-based social interactions.',
+      'Image posts with captions, categories, and author ratings.',
+      'Reviews and ranking battles with public, follower-only, and private/shared-link visibility.',
+      'Separate client and server, with Cloudinary handling uploaded media.',
+    ],
+    metrics: [
+      { value: 'MERN', label: 'full-stack app' },
+      { value: '3 modes', label: 'ranking visibility' },
+      { value: 'Live', label: 'hosted demo' },
+    ],
+    details:
+      'Built around a social feed rather than a static catalogue: users can publish content, interact with posts, write reviews, and create ranking battles with different visibility rules.',
+    github: github('uday-gandhi04/MoBoxd'),
+    demo: 'https://moboxd.onrender.com/',
+  },
+  {
+    id: 'ovacare',
+    name: 'OvaCare',
+    subtitle: "Women's Health AI Research",
+    type: 'hospital',
+    position: [13, 12],
+    color: '#f1eee4',
+    accent: '#ec8190',
+    icon: '✚',
+    category: 'AI / medical imaging research',
+    status: 'Research prototype',
+    description:
+      'An AI-assisted ultrasound analysis workflow that segments ovarian follicles, measures detected regions, and combines imaging outputs with a PCOS-classification model.',
+    stack: ['Python', 'Flask', 'PyTorch', 'SAM ViT-H', 'MobileNetV2', 'OpenCV', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    highlights: [
+      'Parallel model workflow: SAM-based follicle segmentation and MobileNetV2-based PCOS classification.',
+      'Image preprocessing, candidate-mask filtering, follicle measurement, and color-coded result visualisation.',
+      'Frontend built with Next.js and TypeScript; Flask serves the analysis backend.',
+      'The repository describes analysis based on follicle counts and Rotterdam-criteria-related outputs.',
+    ],
+    metrics: [
+      { value: 'SAM', label: 'follicle segmentation' },
+      { value: 'MobileNetV2', label: 'classification model' },
+      { value: 'Full stack', label: 'Flask + Next.js' },
+    ],
+    details:
+      'The project brings image processing and model output into one reporting workflow. It is presented as an engineering/research prototype; its outputs should not be treated as a clinically validated diagnosis.',
+    github: github('shantanu-ingle/OvaCare'),
+    demo: '',
+    medicalDisclaimer:
+      'Research prototype only. Not clinically validated and not a substitute for assessment by a qualified healthcare professional.',
+  },
+  {
+    id: 'blender-studio',
+    name: 'Blender Studio',
+    subtitle: '3D Art & Rendering',
+    type: 'blender',
+    position: [-13, 4],
+    color: '#d2d7de',
+    accent: '#a6b8ff',
+    icon: '◈',
+    category: '3D / creative work',
+    status: 'Render gallery',
+    description:
+      'A collection of 3D modelling and rendering studies exploring interiors, product forms, materials, and lighting.',
+    stack: ['Blender', '3D modelling', 'Materials', 'Lighting', 'Rendering'],
+    highlights: [
+      'Living Room: a stylised interior diorama with furniture, fabric, glass, and warm lighting.',
+      'Coffee Shop: an environment/architecture modelling study.',
+      'Sword: a product-style hard-surface modelling study.',
+      'Whisky Glass: a material and transparent-glass rendering study.',
+    ],
+    details:
+      'The Living Room render is shown below. The other works link to their repository folders because their exact public render-image filenames have not been verified; this avoids showing broken or guessed thumbnails.',
+    github: github('uday-gandhi04/Blender'),
+    demo: '',
+    gallery: [
+      {
+        title: 'Living Room Render',
+        src: blenderImage('Living%20Room/Living%20Room.png'),
+      },
+    ],
+    galleryLink: github('uday-gandhi04/Blender'),
+    relatedLinks: [
+      { label: 'Coffee Shop project files', url: github('uday-gandhi04/Blender/tree/main/Coffee%20Shop') },
+      { label: 'Sword project files', url: github('uday-gandhi04/Blender/tree/main/Sword') },
+      { label: 'Whisky Glass project files', url: github('uday-gandhi04/Blender/tree/main/Whisky%20Glass') },
+    ],
+  },
+  {
+    id: 'notshazam',
+    name: 'NotShazam',
+    subtitle: 'Music Fingerprinting & Identification',
+    type: 'music',
+    position: [0, 4],
+    color: '#d6a454',
+    accent: '#ffbf3c',
+    icon: '♫',
+    category: 'Audio engineering / retrieval',
+    status: 'Research prototype',
+    description:
+      'A music identification system that transforms audio into compact fingerprints, indexes them, and matches a query clip against a song library.',
+    stack: ['Python', 'MongoDB', 'Audio processing', 'Spectrogram hashing', 'Jupyter Notebook'],
+    highlights: [
+      'Generates and indexes spectrogram-derived audio hashes for a 350+ song library.',
+      'Uses fingerprint matching to identify audio, including clips sourced from YouTube streams.',
+      'Designed to retain matching robustness when recordings contain noise or distortion.',
+      'MongoDB stores the indexed fingerprint data for lookup.',
+    ],
+    metrics: [
+      { value: '350+', label: 'songs in library' },
+      { value: '11M+', label: 'indexed hashes' },
+      { value: '<200 ms', label: 'reported match latency' },
+    ],
+    details:
+      'The reported benchmark figures come from the project resume: the indexed library exceeds 11 million hashes, and the matching path was reported below 200 ms. Keep these as measured project results and be prepared to explain the benchmark setup.',
+    github: github('uday-gandhi04/Definitely-Not-Shazam'),
+    demo: '',
+  },
+  {
+    id: 'stemify',
+    name: 'Stemify',
+    subtitle: 'AI Audio Source Separation',
+    type: 'studio',
+    position: [13, 4],
+    color: '#477fa9',
+    accent: '#64d7ff',
+    icon: '≈',
+    category: 'Deep learning / audio',
+    status: 'Model + web interface',
+    description:
+      'An AI audio-separation application that splits a mixed track into vocal and instrumental stems using a phase-aware U-Net-family model.',
+    stack: ['Python', 'PyTorch', 'DeepMultiSourceUNet', 'MUSDB18', 'Librosa', 'Flask', 'React'],
+    highlights: [
+      'Targets vocals, drums, bass, and other instrumental components from mixed audio.',
+      'Uses a phase-aware U-Net-based architecture and a composite loss intended to reduce separation artefacts.',
+      'Flask web interface accepts WAV/MP3 uploads and provides downloadable separated stems.',
+      'The resume also describes STFT-based tempo analysis and sheet-music transcription with PDF/XML export.',
+    ],
+    metrics: [
+      { value: 'U-Net', label: 'source-separation model' },
+      { value: 'WAV / MP3', label: 'input formats' },
+      { value: 'PDF / XML', label: 'transcription export' },
+    ],
+    details:
+      'The project connects a custom deep-learning pipeline to a usable web workflow: upload audio, choose the separation output, run inference, and download the resulting stems.',
+    github: github('uday-gandhi04/Stemify-Audio_Separation_App'),
+    demo: '',
+  },
+  {
+    id: 'math-gestures',
+    name: 'Maths Using Hand Gestures',
+    subtitle: 'Interactive AI Lab',
+    type: 'lab',
+    position: [-13, -4],
+    color: '#d7e4cf',
+    accent: '#7bd4b3',
+    icon: '∑',
+    category: 'Computer vision / multimodal AI',
+    status: 'Python prototype',
+    description:
+      'A webcam-based tool that lets a user draw a maths problem in the air with their index finger, then send the canvas to Gemini AI for a solution.',
+    stack: ['Python', 'OpenCV', 'cvzone', 'HandTrackingModule', 'NumPy', 'Pillow', 'Google Gemini AI'],
+    highlights: [
+      'Tracks hand landmarks through OpenCV and cvzone.',
+      'Uses the index finger to draw on a virtual canvas.',
+      'A five-finger gesture clears the canvas; a dedicated gesture submits the drawing for AI analysis.',
+      'The current README describes the answer being printed to the console; a richer GUI is listed as a future improvement.',
+    ],
+    details:
+      'A good demonstration project because the interaction is visible: webcam input becomes a drawn expression, a gesture submits it, and a generative model attempts to solve it.',
+    github: github('uday-gandhi04/MathsUsingHandGestures'),
+    demo: '',
+  },
+  {
+    id: 'video-dubbing',
+    name: 'Automated Video Dubbing',
+    subtitle: 'AI Video Translation',
+    type: 'cinema',
+    position: [0, -4],
+    color: '#bf7060',
+    accent: '#f6cc72',
+    icon: '▶',
+    category: 'AI / media processing',
+    status: 'Django web application',
+    description:
+      'A web application that localises videos into another language by transcribing speech, translating it, generating new speech, and replacing the original audio.',
+    stack: ['Python', 'Django', 'Whisper AI', 'Google Translate', 'gTTS', 'Pydub', 'FFmpeg', 'HTML', 'CSS'],
+    highlights: [
+      'Accepts MP4, MOV, and AVI videos and lets the user select a target language.',
+      'Extracts audio with FFmpeg and transcribes speech using Whisper AI.',
+      'Translates the transcript, synthesises speech with gTTS, and processes/synchronises audio with Pydub and FFmpeg.',
+      'Supports batch processing and downloadable dubbed output.',
+    ],
+    metrics: [
+      { value: '7 stages', label: 'automated workflow' },
+      { value: 'Multiple', label: 'video formats' },
+      { value: 'Django', label: 'web interface' },
+    ],
+    details:
+      'The goal is to turn several manual media-localisation steps into a repeatable upload-to-download workflow. Future ideas in the repository include more languages, voice controls, and lip-sync improvements.',
+    github: github('uday-gandhi04/Automated-Video-Dubbing'),
+    demo: '',
+  },
+  {
+    id: 'arcade',
+    name: 'Arcade',
+    subtitle: 'My Game Collection',
+    type: 'arcade',
+    position: [13, -4],
+    color: '#786bc3',
+    accent: '#dc8aff',
+    icon: '🎮',
+    category: 'Game development',
+    status: '3 projects',
+    description:
+      'A small collection of gameplay experiments, from a Unity obstacle runner to classic arcade and puzzle mechanics.',
+    stack: ['Unity', 'C#', 'Python', 'HTML', 'CSS', 'JavaScript'],
+    highlights: [
+      'Cube-Run: a Unity runner where the player moves sideways and jumps over obstacles.',
+      'Flappy Bird Clone: a Python-based recreation with game sprites and audio assets.',
+      'Sudoku: a browser UI implemented with HTML, CSS, and JavaScript.',
+    ],
+    details:
+      'The repositories are linked individually below. Cube-Run has a Windows build in its repository; the other entries link to their source code. These links are code/download links, not embedded browser builds.',
+    github: '',
+    demo: '',
+    subProjects: [
+      {
+        name: 'Cube-Run',
+        description: 'Unity/C# obstacle runner. Arrow keys or A/D move; Space jumps.',
+        github: github('uday-gandhi04/Cube-Run'),
+      },
+      {
+        name: 'Flappy Bird Clone',
+        description: 'Python game project with sprite and sound assets.',
+        github: github('uday-gandhi04/Flappy-Bird-Clone'),
+      },
+      {
+        name: 'Sudoku',
+        description: 'Browser-based puzzle interface built with HTML, CSS, and JavaScript.',
+        github: github('uday-gandhi04/Sudoku'),
+      },
+    ],
+  },
+  {
+    id: 'parivar',
+    name: 'Parivar',
+    subtitle: 'Family Tree App',
+    type: 'family',
+    position: [-13, -12],
+    color: '#e0c99e',
+    accent: '#44d9a1',
+    icon: '✦',
+    category: 'Data-centric web application',
+    status: 'In development',
+    description:
+      'A family-tree web application concept for organising a large family into a navigable view of members and relationships.',
+    stack: ['Excel data import', 'Data modelling', 'Family relationships', 'Web UI'],
+    highlights: [
+      'Planned Excel-based import so existing family records can be brought into the application.',
+      'Designed around a large initial family dataset of roughly 500 members.',
+      'The tree metaphor makes relationships easier to browse than a flat spreadsheet.',
+    ],
+    details:
+      'The public GitHub profile does not currently provide a dedicated repository for this project, so the card focuses on the product goal and known scope rather than claiming an unverified implementation stack.',
+    github: '',
+    demo: '',
+  },
+  {
+    id: 'petroleum',
+    name: 'Shobhadamodar Petroleum',
+    subtitle: 'Petrol Pump Operations Management',
+    type: 'petrol',
+    position: [0, -12],
+    color: '#4e9ab4',
+    accent: '#ffc84a',
+    icon: '⛽',
+    category: 'Business workflow digitisation',
+    status: 'In development',
+    description:
+      'A real-world business application aimed at digitising day-to-day petrol-pump operations and centralising recurring workflows.',
+    stack: [],
+    highlights: [
+      'Started from operational requirements of a petrol-pump business.',
+      'Focused on reducing manual effort and making recurring tasks more structured.',
+      'Designed around clearer information flow and a centralised workflow rather than disconnected manual records.',
+    ],
+    details:
+      'This card intentionally avoids guessing the technology stack or naming specific modules until those details are confirmed. The next useful improvement is to list the exact workflows implemented—such as shift records, stock, sales, expenses, or reporting—only where they are part of the actual application.',
+    github: '',
+    demo: '',
+  },
+  {
+    id: 'shakespeare-gpt',
+    name: 'Shakespeare.GPT',
+    subtitle: 'Character-Level Language Model',
+    type: 'library',
+    position: [13, -12],
+    color: '#c6ad8b',
+    accent: '#e8c17e',
+    icon: '📚',
+    category: 'Deep learning / NLP',
+    status: 'Research / learning project',
+    description:
+      'A small PyTorch language model trained on Shakespeare’s collected works to generate Shakespeare-style text character by character.',
+    stack: ['Python', 'PyTorch', 'Character-level modelling', 'Bigram LM', 'Decoder-only Transformer'],
+    highlights: [
+      'Builds up from a simple bigram language model to a self-attention-based Transformer.',
+      'Implements token/character embeddings, positional context, masked multi-head attention, residual connections, layer normalisation, and feed-forward layers.',
+      'Includes a custom training loop and supports GPU acceleration where available.',
+    ],
+    details:
+      'This is a useful example of understanding a model from its components rather than only calling a hosted model API. The repository is inspired by Andrej Karpathy’s “GPT from scratch” learning series.',
+    github: github('uday-gandhi04/Shakespeare.GPT'),
+    demo: '',
+  },
+];
+
+export const hqProject = {
+  id: 'about',
+  name: "Uday's HQ",
+  subtitle: 'Software Engineer · AI/ML · Full Stack',
+  type: 'hq',
+  position: [0, 12],
+  color: '#d6c7a1',
+  accent: '#82cce4',
+  icon: '●',
+  category: 'About / résumé',
+  description:
+    'Computer Science graduate with an Honors specialisation in Data Science, interested in building useful software products and applied AI systems.',
+  github: github('uday-gandhi04'),
+  profile: {
+    location: 'Shegaon, Maharashtra, India',
+    education: {
+      institution: 'Shri Ramdeobaba College of Engineering and Management, Nagpur',
+      degree: 'B.Tech in Computer Science (Honors in Data Science)',
+      period: '2022–2026',
+      cgpa: '8.81 / 10',
+      honorsCgpa: '8.73 / 10 in Data Science',
+    },
+    experience: {
+      role: 'MERN Stack Developer Intern / Technology Training',
+      company: 'Cognizant',
+      period: 'Jan–May 2026',
+      location: 'Chennai, India',
+      highlights: [
+        'Developed a full-stack Library Management System using MongoDB, Express, React, and Node.js.',
+        'Built REST APIs for book inventory, issue/return records, and availability tracking.',
+        'Connected React interfaces to backend APIs for administrator and patron workflows.',
+      ],
+    },
+    skillGroups: [
+      { label: 'Languages', items: ['Python', 'SQL', 'Java', 'C', 'JavaScript'] },
+      { label: 'Application development', items: ['React', 'Node.js', 'Express', 'Django', 'Flask', 'REST APIs'] },
+      { label: 'Data & AI', items: ['MongoDB', 'MySQL', 'PyTorch', 'NumPy', 'scikit-learn', 'OpenCV'] },
+      { label: 'Tools & foundations', items: ['Git', 'AWS coursework/labs', 'Blender', 'DSA', 'OOP', 'OS fundamentals'] },
+    ],
+    achievements: [
+      '400+ LeetCode problems solved.',
+      'DeepLearning.AI — Generative Adversarial Networks (GANs) Specialization.',
+      'Cisco — Python Essentials.',
+      'Google — Project Management.',
+    ],
+    contactLinks: [
+      { label: 'GitHub', url: github('uday-gandhi04') },
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/uday-gandhi-46314624b/' },
+      { label: 'Email', url: 'mailto:udaygandhi2004@gmail.com' },
+    ],
+  },
+};
