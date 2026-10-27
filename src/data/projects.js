@@ -62,7 +62,7 @@ export const projects = [
     ],
     details:
       'The project brings image processing and model output into one reporting workflow. It is presented as an engineering/research prototype; its outputs should not be treated as a clinically validated diagnosis.',
-    github: github('shantanu-ingle/OvaCare'),
+    github: github('uday-gandhi04/OvaCare'),
     demo: '',
     medicalDisclaimer:
       'Research prototype only. Not clinically validated and not a substitute for assessment by a qualified healthcare professional.',
