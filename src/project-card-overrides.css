@@ -405,3 +405,15 @@
     margin-top: 8px;
   }
 }
+
+/* Résumé download link in Uday's HQ */
+.hq-contact-links .resume-download-link {
+  color: #17241b;
+  border-color: rgba(232, 202, 128, 0.9);
+  background: #e8ca80;
+}
+
+.hq-contact-links .resume-download-link:hover {
+  border-color: #f2d99b;
+  background: #f2d99b;
+}

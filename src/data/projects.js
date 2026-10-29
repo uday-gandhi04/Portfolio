@@ -349,6 +349,7 @@ export const hqProject = {
   github: github('uday-gandhi04'),
   profile: {
     location: 'Shegaon, Maharashtra, India',
+    resumeUrl: '/resume.pdf',
     education: {
       institution: 'Shri Ramdeobaba College of Engineering and Management, Nagpur',
       degree: 'B.Tech in Computer Science (Honors in Data Science)',

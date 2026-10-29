@@ -200,8 +200,13 @@ function ProfileDetails({ profile }) {
             </a>
           ))}
           {profile.resumeUrl && (
-            <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-              Download résumé<span>↗</span>
+            <a
+              className="resume-download-link"
+              href={profile.resumeUrl}
+              download="Uday_Gandhi_Resume.pdf"
+              aria-label="Download Uday Gandhi's résumé as a PDF"
+            >
+              Download résumé <span aria-hidden="true">↓</span>
             </a>
           )}
         </div>
