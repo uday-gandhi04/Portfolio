@@ -626,7 +626,7 @@ export default function App() {
         >
           <span className="brand-cube">U</span>
           <span>
-            <strong>UDAY'S WORLD</strong>
+            <strong>UDAY'S STACK</strong>
             <small>AN INTERACTIVE PORTFOLIO</small>
           </span>
         </button>

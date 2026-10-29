@@ -1566,7 +1566,7 @@ function EntrySign() {
   return <group position={[0, 0, 21.3]}>
     <mesh castShadow position={[0, 1.75, 0]}><boxGeometry args={[4.7, 1.05, 0.28]} /><meshStandardMaterial color="#3b382c" roughness={0.7} /></mesh>
     <Text position={[0, 1.9, 0.17]} fontSize={0.22} color="#f5d58b" anchorX="center" anchorY="middle">WELCOME TO</Text>
-    <Text position={[0, 1.58, 0.17]} fontSize={0.31} color="#fff0c9" anchorX="center" anchorY="middle" outlineWidth={0.008} outlineColor="#3b382c">UDAY'S WORLD</Text>
+    <Text position={[0, 1.58, 0.17]} fontSize={0.31} color="#fff0c9" anchorX="center" anchorY="middle" outlineWidth={0.008} outlineColor="#3b382c">UDAY'S STACK</Text>
     {[-2.1, 2.1].map((x) => <mesh key={x} castShadow position={[x, 0.83, 0]}><boxGeometry args={[0.13, 1.7, 0.16]} /><meshStandardMaterial color="#8b7860" /></mesh>)}
   </group>;
 }

@@ -1,4 +1,4 @@
-# Uday's World — interactive 3D portfolio starter
+# Uday's Stack — interactive 3D portfolio starter
 
 A React + Three.js starter inspired by the supplied top-down town map. It starts in isometric exploration mode and lets visitors switch to a car-following driving POV.
 
