@@ -604,7 +604,7 @@ function Label({ project, onSelect, visible }) {
   if (!visible) return null;
   const height = project.id === 'petroleum' ? 4.05 : project.id === 'about' ? 4.15 : project.type === 'family' ? 4.0 : 3.75;
   return (
-    <Html position={[0, height, 0]} center distanceFactor={17} occlude={false} zIndexRange={[20, 0]}>
+    <Html position={[0, height, 0]} center distanceFactor={17} occlude={false} zIndexRange={[2, 0]}>
       <button
         className="world-label"
         onClick={(event) => { event.stopPropagation(); onSelect(project); }}
