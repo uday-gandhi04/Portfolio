@@ -1,46 +1,58 @@
-# Uday's Stack — interactive 3D portfolio starter
+# Uday's Stack — Interactive 3D Portfolio
 
-A React + Three.js starter inspired by the supplied top-down town map. It starts in isometric exploration mode and lets visitors switch to a car-following driving POV.
+**Live website:** https://udaygandhi.is-a.dev
 
-## Features in this starter
+Uday's Stack is a personal developer portfolio presented as an
+interactive 3D town. Each building represents a project, giving
+visitors a more visual way to explore my work in software engineering,
+full-stack development, and AI/ML.
 
-- Isometric overview with orbit/zoom controls
-- Driving POV with a follow camera
-- Keyboard driving: **WASD** or **arrow keys**
-- Touch driving controls on small screens
+## Features
+
+- Interactive isometric 3D town
+- Switchable isometric and driving POV camera modes
 - Clickable project buildings and floating labels
-- Project spotlight panel and an **All Projects** directory
-- Responsive overlay UI
-- `public/reference-map.png` keeps the supplied map nearby as a visual reference
+- Project details with technologies, highlights, and available links
+- All Projects directory
+- Uday's HQ with education, experience, technical skills, and contact links
+- Downloadable résumé
+- Keyboard and touch controls for driving mode
+- Responsive interface with a dark teal and warm gold theme
 
-## Run locally
+## Technology Stack
 
-Requires Node.js 18.17+ (Node 20 LTS or newer recommended).
+- React
+- Vite
+- Three.js
+- React Three Fiber
+- React Three Drei
+- CSS
+
+## Getting Started
+
+Requires Node.js 18.17 or newer.
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-Open the local URL printed by Vite. To create a production build:
+Open the local URL printed by Vite. To create and preview a production build:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Before publishing
-
-1. Review the project descriptions and links in `src/data/projects.js`.
-2. Replace placeholders with verified details, screenshots, and demos.
-3. Add a real resume PDF and update the About / Resume action.
-4. Test keyboard, touch, and reduced-motion behaviour on mobile and desktop.
-5. Optimise 3D models and test performance on a mid-range phone.
-
 ## Controls
 
-- **Isometric:** drag to orbit, scroll/pinch to zoom, click a building to open its details.
-- **Driving POV:** W / Up = accelerate, S / Down = reverse, A / Left and D / Right = steer.
-- Use the POV switcher or **Exit drive** to change back at any time.
-
-The project is an initial prototype, not a fully polished game. Buildings are procedural low-poly approximations and the scene can be refined in Blender after interaction and navigation are stable.
+- **Isometric:** drag to orbit, scroll/pinch to zoom, and click a building to open its details.
+- **Driving POV:** W / Up to accelerate, S / Down to reverse, and A / Left or D / Right to steer.
+- Use the POV switcher or **Exit drive** to return to the isometric view.

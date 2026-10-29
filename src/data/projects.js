@@ -358,14 +358,14 @@ export const hqProject = {
       honorsCgpa: '8.73 / 10 in Data Science',
     },
     experience: {
-      role: 'MERN Stack Developer Intern / Technology Training',
+      role: 'MERN Stack Developer Intern',
       company: 'Cognizant',
       period: 'Jan–May 2026',
       location: 'Chennai, India',
       highlights: [
-        'Developed a full-stack Library Management System using MongoDB, Express, React, and Node.js.',
-        'Built REST APIs for book inventory, issue/return records, and availability tracking.',
-        'Connected React interfaces to backend APIs for administrator and patron workflows.',
+        'Contributed to a MERN-stack Library Management System as part of a six-person team during Cognizant’s mandatory final-semester internship.',
+        'Built the home pages for the Member, Librarian, and Manager roles, along with additional application pages.',
+        'Rotated Scrum Master responsibilities with teammates and frequently served as Scrum Master to help coordinate the team’s work.',
       ],
     },
     skillGroups: [
