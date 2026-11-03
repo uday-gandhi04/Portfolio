@@ -6,7 +6,9 @@
 
 * { box-sizing: border-box; }
 
-html { min-height: 100%; scroll-behavior: smooth; }
+html { min-height: 100%; scroll-behavior: smooth; scrollbar-width: none; }
+
+html::-webkit-scrollbar { display: none; }
 
 body { min-height: 100%; margin: 0; overflow-x: hidden; overflow-y: auto; }
 
@@ -94,7 +96,7 @@ button { cursor: pointer; }
 
 .hint-close { align-self: flex-start; margin-left: 8px; padding: 0; background: transparent; border: 0; color: #adbcaf; font-size: 18px; }
 
-.map-legend { position: absolute; z-index: 3; left: 31px; bottom: 24px; display: flex; gap: 16px; color: #f2f1de; font: 9px 'DM Mono', monospace; text-shadow: 0 2px 8px #10231e; }
+.map-legend { position: absolute; z-index: 3; left: 31px; bottom: 44px; display: flex; gap: 16px; color: #f2f1de; font: 9px 'DM Mono', monospace; text-shadow: 0 2px 8px #10231e; }
 
 .map-legend span { display: flex; gap: 6px; align-items: center; }
 
@@ -232,7 +234,7 @@ button { cursor: pointer; }
 
   .hint-card small { font-size: 9px; }
 
-  .map-legend { left: 14px; bottom: 17px; gap: 9px; font-size: 8px; }
+  .map-legend { left: 14px; bottom: 38px; gap: 9px; font-size: 8px; }
 
   .bottom-bar { padding: 11px 14px; font-size: 8px; }
 
