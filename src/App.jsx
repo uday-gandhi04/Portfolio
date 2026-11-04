@@ -4,6 +4,7 @@ import './project-card-overrides.css';
 import { Canvas } from '@react-three/fiber';
 import { AdaptiveDpr, Preload } from '@react-three/drei';
 import World from './world/World.jsx';
+import JourneyExperience from './journey/JourneyExperience.jsx';
 import { projects, hqProject } from './data/projects.js';
 
 function getWorldTimePhase(date) {
@@ -445,6 +446,9 @@ export default function App() {
   const [carSpeed, setCarSpeed] = useState(0);
   const [showDirectory, setShowDirectory] = useState(false);
   const [showHelp, setShowHelp] = useState(true);
+  const [showJourney, setShowJourney] = useState(
+    () => window.location.pathname.replace(/\/+$/, '') === '/about',
+  );
 
   const carRef = useRef(null);
   const keysRef = useRef(new Set());
@@ -452,6 +456,42 @@ export default function App() {
   useEffect(() => {
     const timer = window.setInterval(() => setLocalTime(new Date()), 15000);
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const pageTitle = showJourney
+      ? 'About Uday Gandhi | Software Engineer & AI/ML Developer'
+      : 'Uday Gandhi | Software Engineer & AI/ML Developer';
+    const pageDescription = showJourney
+      ? "Explore Uday Gandhi's education, Cognizant internship, software engineering projects, applied AI/ML work, and resume."
+      : 'Uday Gandhi is a Computer Science graduate with Honors in Data Science, building full-stack applications and exploring applied AI/ML. Explore his software engineering projects.';
+
+    document.title = pageTitle;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', pageDescription);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', pageTitle);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', pageDescription);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', pageTitle);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', pageDescription);
+
+    const pageUrl = new URL(showJourney ? '/about/' : '/', window.location.origin).href;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
+  }, [showJourney]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const journeyPath = window.location.pathname.replace(/\/+$/, '') === '/about';
+      setShowJourney(journeyPath);
+      setSelectedProject(null);
+      setShowDirectory(false);
+      setNearbyProject(null);
+      setViewMode('iso');
+      setTransitioning(true);
+      keysRef.current.clear();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const worldPhase = getWorldTimePhase(localTime);
@@ -472,7 +512,12 @@ export default function App() {
       const key = event.key.toLowerCase();
 
       if (key === 'escape') {
-        if (selectedProject) {
+        if (showJourney) {
+          setShowJourney(false);
+          if (window.location.pathname.replace(/\/+$/, '') === '/about') {
+            window.history.pushState({}, '', '/');
+          }
+        } else if (selectedProject) {
           setSelectedProject(null);
           setTransitioning(true);
         } else if (showDirectory) {
@@ -526,7 +571,22 @@ export default function App() {
     nearbyProject,
     selectedProject,
     showDirectory,
+    showJourney,
   ]);
+
+  const openJourney = () => {
+    keysRef.current.clear();
+    setSelectedProject(null);
+    setShowDirectory(false);
+    setShowJourney(true);
+    if (window.location.pathname.replace(/\/+$/, '') !== '/about') {
+      window.history.pushState({}, '', '/about/');
+    }
+
+    if (viewMode === 'drive') {
+      setViewMode('iso');
+    }
+  };
 
   const changeView = (nextMode) => {
     if (nextMode === viewMode) return;
@@ -543,7 +603,12 @@ export default function App() {
    * uses the isometric project-detail camera.
    */
   const chooseProject = (project) => {
-    keysRef.current.clear();
+     if (project?.id === 'about') {
+       openJourney();
+       return;
+     }
+
+     keysRef.current.clear();
     setSelectedProject(project);
     setShowDirectory(false);
 
@@ -574,6 +639,10 @@ export default function App() {
 
   const returnToTown = () => {
     keysRef.current.clear();
+    if (window.location.pathname.replace(/\/+$/, '') === '/about') {
+      window.history.pushState({}, '', '/');
+    }
+    setShowJourney(false);
     setSelectedProject(null);
     setNearbyProject(null);
     setShowDirectory(false);
@@ -583,45 +652,46 @@ export default function App() {
 
   return (
     <main className={`app-shell${viewMode === 'drive' ? ' is-driving' : ''}`}>
-      <div className="scene-wrap">
-        <Canvas
-          shadows
-          dpr={[1, 1.6]}
-          camera={{
-            position: [0, 31, 37],
-            fov: 42,
-            near: 0.1,
-            far: 160,
-          }}
-          gl={{
-            antialias: true,
-            powerPreference: 'high-performance',
-          }}
-        >
-          <World
-            projects={projects}
-            hqProject={hqProject}
-            onSelect={chooseProject}
-            onNearbyProject={setNearbyProject}
-            onSpeedChange={setCarSpeed}
-            drivePaused={Boolean(selectedProject || showDirectory)}
-            viewMode={viewMode}
-            carRef={carRef}
-            keysRef={keysRef}
-            selectedProject={selectedProject}
-            labelsVisible={
-              !selectedProject &&
-              !showDirectory &&
-              viewMode === 'iso'
-            }
-            transitioning={transitioning}
-            setTransitioning={setTransitioning}
-          />
-
-          <AdaptiveDpr pixelated />
-          <Preload all />
-        </Canvas>
-      </div>
+      {!showJourney && (
+        <div className="scene-wrap">
+          <Canvas
+            shadows
+            dpr={[1, 1.6]}
+            camera={{
+              position: [0, 31, 37],
+              fov: 42,
+              near: 0.1,
+              far: 160,
+            }}
+            gl={{
+              antialias: true,
+              powerPreference: 'high-performance',
+            }}
+          >
+            <World
+              projects={projects}
+              hqProject={hqProject}
+              onSelect={chooseProject}
+              onNearbyProject={setNearbyProject}
+              onSpeedChange={setCarSpeed}
+              drivePaused={Boolean(selectedProject || showDirectory)}
+              viewMode={viewMode}
+              carRef={carRef}
+              keysRef={keysRef}
+              selectedProject={selectedProject}
+              labelsVisible={
+                !selectedProject &&
+                !showDirectory &&
+                viewMode === 'iso'
+              }
+              transitioning={transitioning}
+              setTransitioning={setTransitioning}
+            />
+            <AdaptiveDpr pixelated />
+            <Preload all />
+          </Canvas>
+        </div>
+      )}
 
       <header className="topbar">
         <button
@@ -639,21 +709,45 @@ export default function App() {
         <nav className="top-actions" aria-label="Portfolio navigation">
           <button
             className="nav-button"
-            onClick={() => setShowDirectory(true)}
+            onClick={() => {
+              keysRef.current.clear();
+              if (window.location.pathname.replace(/\/+$/, '') === '/about') {
+                window.history.pushState({}, '', '/');
+              }
+              setShowJourney(false);
+              setSelectedProject(null);
+              setShowDirectory(true);
+            }}
           >
             All projects <span>↗</span>
           </button>
 
-          <button
+          <a
             className="nav-button"
-            onClick={() => chooseProject(hqProject)}
+            href="/about/"
+            onClick={(event) => {
+              if (
+                event.button !== 0 ||
+                event.metaKey ||
+                event.ctrlKey ||
+                event.shiftKey ||
+                event.altKey
+              ) {
+                return;
+              }
+
+              event.preventDefault();
+              openJourney();
+            }}
           >
             About / Resume
-          </button>
+          </a>
         </nav>
       </header>
 
-      <section className="hero-copy" aria-label="Introduction">
+      {showJourney && <JourneyExperience />}
+
+      {!showJourney && <section className="hero-copy" aria-label="Introduction">
         <span className="eyebrow">
           <span className="status-dot" />
           OPEN WORLD · SOFTWARE · AI
@@ -666,9 +760,9 @@ export default function App() {
         </h1>
 
         <p>Explore the projects, one building at a time.</p>
-      </section>
+      </section>}
 
-      <div className="view-switcher" aria-label="Change camera view">
+      {!showJourney && <div className="view-switcher" aria-label="Change camera view">
         <span className="switcher-label">CAMERA POV</span>
 
         <div className="switcher-buttons">
@@ -688,9 +782,9 @@ export default function App() {
             <span>◉</span> Driving POV
           </button>
         </div>
-      </div>
+      </div>}
 
-      <div
+      {!showJourney && <div
         className="world-clock"
         aria-label={`Local time ${localTimeText}, ${worldPhase.label.toLowerCase()}`}
         title="The town's lighting follows your device's local clock"
@@ -702,9 +796,9 @@ export default function App() {
           <time dateTime={localTime.toISOString()}>{localTimeText}</time>
           <small>{worldPhase.label} · LOCAL TIME</small>
         </span>
-      </div>
+      </div>}
 
-      {viewMode === 'iso' &&
+      {!showJourney && viewMode === 'iso' &&
         !selectedProject &&
         !showDirectory &&
         showHelp && (
@@ -726,7 +820,7 @@ export default function App() {
           </div>
         )}
 
-      {viewMode === 'iso' &&
+      {!showJourney && viewMode === 'iso' &&
         !selectedProject &&
         !showDirectory &&
         showHelp && (
@@ -742,7 +836,7 @@ export default function App() {
           </div>
         )}
 
-      {viewMode === 'drive' && (
+      {!showJourney && viewMode === 'drive' && (
         <div className="driving-hud">
           <span className="live-dot" />
           <strong>DRIVING MODE</strong>
@@ -756,7 +850,7 @@ export default function App() {
         </div>
       )}
 
-      {viewMode === 'drive' &&
+      {!showJourney && viewMode === 'drive' &&
         nearbyProject &&
         !selectedProject &&
         !showDirectory && (
@@ -775,13 +869,13 @@ export default function App() {
           </button>
         )}
 
-      {viewMode === 'drive' &&
+      {!showJourney && viewMode === 'drive' &&
         !selectedProject &&
         !showDirectory && (
         <DrivingControls keysRef={keysRef} />
       )}
 
-      <footer className="bottom-bar">
+      {!showJourney && <footer className="bottom-bar">
         <span>© {new Date().getFullYear()} Uday Gandhi</span>
         <span className="bottom-center">
           A portfolio, reimagined as a small town.
@@ -795,12 +889,12 @@ export default function App() {
             GITHUB ↗
           </a>
         </span>
-      </footer>
+      </footer>}
 
-      <ProjectPanel
+      {!showJourney && <ProjectPanel
         project={selectedProject}
         onClose={closeProject}
-      />
+      />}
 
       {showDirectory && (
         <ProjectsDrawer

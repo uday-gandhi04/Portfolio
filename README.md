@@ -15,6 +15,8 @@ full-stack development, and AI/ML.
 - Project details with technologies, highlights, and available links
 - All Projects directory
 - Uday's HQ with education, experience, technical skills, and contact links
+- Scroll-driven career and project journey at `/about/`
+- Direct About URL with shareable navigation and browser back/forward support
 - Downloadable résumé
 - Keyboard and touch controls for driving mode
 - Responsive interface with a dark teal and warm gold theme
@@ -26,6 +28,7 @@ full-stack development, and AI/ML.
 - Three.js
 - React Three Fiber
 - React Three Drei
+- GSAP ScrollTrigger
 - CSS
 
 ## Getting Started
