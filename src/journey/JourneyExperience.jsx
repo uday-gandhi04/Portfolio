@@ -149,19 +149,88 @@ const CHAPTERS = [
   },
 ];
 
+function getTitleLines(node) {
+  const lines = [[]];
+
+  function visit(value) {
+    if (
+      value === null ||
+      value === undefined ||
+      typeof value === 'boolean'
+    ) {
+      return;
+    }
+
+    if (Array.isArray(value)) {
+      value.forEach(visit);
+      return;
+    }
+
+    if (React.isValidElement(value)) {
+      if (value.type === 'br') {
+        lines.push([]);
+        return;
+      }
+
+      visit(value.props.children);
+      return;
+    }
+
+    lines[lines.length - 1].push(String(value));
+  }
+
+  visit(node);
+
+  return lines
+    .map((parts) => parts.join(''))
+    .filter((line) => line.length > 0);
+}
+
 function ChapterContent({ chapter }) {
+  const titleLines = getTitleLines(chapter.title);
+
   return (
     <div
-      className={`journey-copy ${chapter.align === 'right' ? 'is-right' : 'is-left'}${chapter.featured ? ' is-featured' : ''}${chapter.closing ? ' is-closing' : ''}`}
+      className={`journey-copy ${
+        chapter.align === 'right' ? 'is-right' : 'is-left'
+      }${chapter.featured ? ' is-featured' : ''}${
+        chapter.closing ? ' is-closing' : ''
+      }`}
     >
       <p className="journey-eyebrow">
-        <span />
+        <span
+          className="journey-eyebrow-line"
+          aria-hidden="true"
+        />
         {chapter.eyebrow}
       </p>
 
-      <h2 className="journey-title">{chapter.title}</h2>
+      <h2
+        className="journey-title"
+        aria-label={titleLines.join(' ')}
+      >
+        {titleLines.map((line, index) => (
+          <span
+            className="journey-title-mask"
+            aria-hidden="true"
+            key={`${chapter.id}-line-${index}`}
+          >
+            <span className="journey-title-line">
+              {line}
+            </span>
+          </span>
+        ))}
+      </h2>
 
-      <p className="journey-body">{chapter.body}</p>
+      <p className="journey-body">
+        {chapter.body}
+      </p>
+
+      {chapter.note && (
+        <p className="journey-note">
+          {chapter.note}
+        </p>
+      )}
 
       {chapter.facts && (
         <div
@@ -265,7 +334,6 @@ export default function JourneyExperience() {
     }
 
     const context = gsap.context(() => {
-      // One continuous progress value drives the 3D camera path.
       ScrollTrigger.create({
         scroller,
         trigger: track,
@@ -276,8 +344,6 @@ export default function JourneyExperience() {
         },
       });
 
-      // Keep the active chapter indicator synchronized with the
-      // section actually crossing the viewport centre.
       chapterRefs.current.forEach((section, index) => {
         if (!section) return;
 
@@ -291,34 +357,194 @@ export default function JourneyExperience() {
         });
 
         const copy = section.querySelector('.journey-copy');
+        if (!copy) return;
 
-        const elements = copy?.querySelectorAll(
-          '.journey-eyebrow, .journey-title, .journey-body, .journey-facts, .journey-bullets, .journey-footnote, .journey-links, .journey-closing-actions'
+        const eyebrow = copy.querySelector('.journey-eyebrow');
+        const eyebrowLine = copy.querySelector('.journey-eyebrow-line');
+        const titleLines = copy.querySelectorAll('.journey-title-line');
+        const body = copy.querySelector('.journey-body');
+        const note = copy.querySelector('.journey-note');
+        const facts = copy.querySelectorAll('.journey-fact');
+        const bullets = copy.querySelectorAll('.journey-bullets li');
+        const footnote = copy.querySelector('.journey-footnote');
+        const links = copy.querySelectorAll(
+          '.journey-links a, .journey-closing-actions a',
         );
 
-        if (!elements?.length) return;
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: copy,
+            scroller,
+            start: 'top 60%',
+            end: 'top 30%',
+            scrub: 0.55,
+            invalidateOnRefresh: true,
+          },
+        });
 
-        gsap.fromTo(
-          elements,
-          { autoAlpha: 0, y: 34 },
+        timeline.fromTo(
+          eyebrow,
+          {
+            autoAlpha: 0,
+            y: 14,
+            letterSpacing: '0.27em',
+          },
           {
             autoAlpha: 1,
             y: 0,
-            stagger: 0.075,
+            letterSpacing: '0.17em',
+            duration: 0.35,
             ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              scroller,
-              start: 'top 68%',
-              end: 'top 34%',
-              scrub: 0.8,
-            },
-          }
+          },
+          0,
         );
+
+        timeline.fromTo(
+          eyebrowLine,
+          {
+            scaleX: 0,
+            transformOrigin: 'left center',
+          },
+          {
+            scaleX: 1,
+            duration: 0.35,
+            ease: 'none',
+          },
+          0,
+        );
+
+        timeline.fromTo(
+          titleLines,
+          {
+            yPercent: 112,
+            rotateX: -10,
+            autoAlpha: 0,
+            transformOrigin: 'left bottom',
+          },
+          {
+            yPercent: 0,
+            rotateX: 0,
+            autoAlpha: 1,
+            stagger: 0.16,
+            duration: 0.72,
+            ease: 'power3.out',
+          },
+          0.08,
+        );
+
+        if (body) {
+          timeline.fromTo(
+            body,
+            {
+              y: 20,
+              autoAlpha: 0,
+              filter: 'blur(5px)',
+            },
+            {
+              y: 0,
+              autoAlpha: 1,
+              filter: 'blur(0px)',
+              duration: 0.65,
+              ease: 'power2.out',
+            },
+            0.48,
+          );
+        }
+
+        if (note) {
+          timeline.fromTo(
+            note,
+            {
+              y: 16,
+              autoAlpha: 0,
+            },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.45,
+            },
+            0.78,
+          );
+        }
+
+        if (facts.length) {
+          timeline.fromTo(
+            facts,
+            {
+              y: 18,
+              autoAlpha: 0,
+            },
+            {
+              y: 0,
+              autoAlpha: 1,
+              stagger: 0.10,
+              duration: 0.48,
+              ease: 'power2.out',
+            },
+            0.95,
+          );
+        }
+
+        if (bullets.length) {
+          timeline.fromTo(
+            bullets,
+            {
+              x: -16,
+              autoAlpha: 0,
+            },
+            {
+              x: 0,
+              autoAlpha: 1,
+              stagger: 0.12,
+              duration: 0.45,
+              ease: 'power2.out',
+            },
+            0.92,
+          );
+        }
+
+        if (footnote) {
+          timeline.fromTo(
+            footnote,
+            {
+              y: 12,
+              autoAlpha: 0,
+            },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.4,
+              ease: 'power2.out',
+            },
+            1.18,
+          );
+        }
+
+        if (links.length) {
+          timeline.fromTo(
+            links,
+            {
+              y: 12,
+              autoAlpha: 0,
+            },
+            {
+              y: 0,
+              autoAlpha: 1,
+              stagger: 0.10,
+              duration: 0.4,
+              ease: 'power2.out',
+            },
+            1.28,
+          );
+        }
       });
     }, track);
 
     requestAnimationFrame(() => ScrollTrigger.refresh());
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+    }
 
     return () => context.revert();
   }, [chapterCount]);

@@ -870,3 +870,240 @@
     transition: none !important;
   }
 }
+
+/* ==================================================
+   KINETIC TYPOGRAPHY — THE MAKING OF A BUILDER
+================================================== */
+
+.journey-vignette {
+  background:
+    radial-gradient(
+      ellipse at 50% 46%,
+      transparent 38%,
+      rgba(3, 9, 6, 0.32) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(4, 12, 8, 0.12) 0%,
+      transparent 20%,
+      transparent 80%,
+      rgba(4, 12, 8, 0.20) 100%
+    );
+}
+
+.journey-chapter::before,
+.journey-chapter:nth-child(even)::before {
+  background: transparent !important;
+}
+
+.journey-copy::before {
+  content: none !important;
+  display: none !important;
+}
+
+.journey-copy {
+  text-shadow: 0 1px 9px rgba(0, 0, 0, 0.20);
+}
+
+.journey-title {
+  perspective: 900px;
+  text-shadow: 0 2px 9px rgba(0, 0, 0, 0.14);
+}
+
+.journey-title-mask {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: bottom;
+  padding-top: 0.06em;
+  padding-bottom: 0.10em;
+  margin-bottom: -0.10em;
+}
+
+.journey-body {
+  color: rgba(243, 241, 232, 0.96);
+  font-size: clamp(15px, 1.12vw, 17px);
+  line-height: 1.9;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.20);
+}
+
+.journey-eyebrow-line {
+  width: 30px !important;
+  height: 1px !important;
+  flex: 0 0 30px;
+  border-radius: 0 !important;
+  transform-origin: left center;
+  will-change: transform;
+  background: #dfc17e !important;
+  box-shadow: 0 0 10px rgba(212, 181, 119, 0.28) !important;
+}
+
+.journey-note {
+  max-width: 430px;
+  margin: 21px 0 0;
+  color: rgba(218, 207, 177, 0.92);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(19px, 1.65vw, 24px);
+  font-style: italic;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.journey-bullets li,
+.journey-fact,
+.journey-footnote,
+.journey-links a,
+.journey-closing-actions a {
+  will-change: transform, opacity;
+}
+
+.chapter-featured .journey-title {
+  font-size: clamp(58px, 7.5vw, 108px);
+}
+
+.chapter-featured .journey-eyebrow {
+  color: #e7d19a;
+}
+
+.chapter-featured .journey-body {
+  color: #f7f1e5;
+}
+
+@media (max-width: 900px) {
+  .journey-body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .journey-vignette {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 12, 8, 0.02) 0%,
+      rgba(4, 12, 8, 0.08) 38%,
+      rgba(4, 12, 8, 0.28) 68%,
+      rgba(4, 12, 8, 0.42) 100%
+    );
+  }
+
+  .journey-body {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .journey-note {
+    margin-top: 15px;
+    font-size: 19px;
+  }
+
+  .chapter-featured .journey-title {
+    font-size: clamp(44px, 11.5vw, 66px);
+  }
+}
+
+@media (max-height: 700px) and (min-width: 641px) {
+  .chapter-featured .journey-title {
+    font-size: clamp(50px, 6vw, 82px);
+  }
+}
+
+/* ==========================================
+   CINEMATIC LINE-BY-LINE TYPOGRAPHY
+========================================== */
+.journey-title {
+  display: flex;
+  flex-direction: column;
+  perspective: 1000px;
+}
+
+.journey-title-mask {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 0.06em;
+  padding-bottom: 0.13em;
+  margin-bottom: -0.13em;
+}
+
+.journey-title-line {
+  display: block;
+  width: 100%;
+  transform-origin: left bottom;
+  will-change: transform, opacity;
+}
+
+.journey-eyebrow-line {
+  display: inline-block;
+  width: 30px !important;
+  height: 1px !important;
+  flex: 0 0 30px;
+  border-radius: 0 !important;
+  transform-origin: left center;
+  background: #dfc17e !important;
+  box-shadow: none !important;
+}
+
+.journey-body {
+  padding-left: 17px;
+  border-left: 1px solid rgba(212, 181, 119, 0.55);
+  color: rgba(245, 241, 231, 0.97);
+  line-height: 1.85;
+  filter: none;
+}
+
+.journey-note {
+  max-width: 430px;
+  margin-top: 20px;
+  color: #ddc995;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(20px, 1.7vw, 25px);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.journey-copy::before {
+  display: none !important;
+  content: none !important;
+}
+
+.journey-copy {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
+}
+
+.chapter-featured .journey-title {
+  font-size: clamp(58px, 7.5vw, 108px);
+}
+
+@media (max-width: 640px) {
+  .journey-title-mask {
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
+  .journey-body {
+    padding-left: 13px;
+    font-size: 13px;
+    line-height: 1.72;
+  }
+
+  .journey-note {
+    font-size: 19px;
+  }
+
+  .chapter-featured .journey-title {
+    font-size: clamp(44px, 11.5vw, 66px);
+  }
+}
+
+@media (max-height: 700px) and (min-width: 641px) {
+  .chapter-featured .journey-title {
+    font-size: clamp(50px, 6vw, 82px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-title-line {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
