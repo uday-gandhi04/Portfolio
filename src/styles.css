@@ -334,11 +334,13 @@ button { cursor: pointer; }
 
 .project-gallery-item img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #293a35; }
 
+.project-gallery-item video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #293a35; }
+
 .project-gallery-item span { display: block; padding: 7px 8px; color: #c5d2c4; font-size: 9px; line-height: 1.4; }
 
 .project-gallery-item:hover { border-color: rgba(232,202,128,.55); }
 
-.project-gallery-item.image-unavailable { display: none; }
+.project-gallery-item.media-unavailable { display: none; }
 
 .gallery-hint { margin: 6px 0 0; color: #84988a; font-size: 9px; line-height: 1.5; }
 

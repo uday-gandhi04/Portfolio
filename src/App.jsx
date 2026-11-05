@@ -23,26 +23,47 @@ function ProjectGallery({ images = [] }) {
       <h3>Selected work</h3>
       <div className="project-gallery-grid">
         {images.map((image) => (
-          <a
-            className="project-gallery-item"
-            href={image.src}
-            target="_blank"
-            rel="noreferrer"
-            key={image.src}
-            title={`Open ${image.title} in a new tab`}
-          >
-            <img
-              src={image.src}
-              alt={image.title}
-              loading="lazy"
-              onError={(event) => {
-                event.currentTarget
-                  .closest('.project-gallery-item')
-                  ?.classList.add('image-unavailable');
-              }}
-            />
-            <span>{image.title}</span>
-          </a>
+          image.type === 'video' ? (
+            <div className="project-gallery-item" key={image.src}>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={image.title}
+                onError={(event) => {
+                  event.currentTarget
+                    .closest('.project-gallery-item')
+                    ?.classList.add('media-unavailable');
+                }}
+              >
+                <source src={image.src} type="video/mp4" />
+              </video>
+              <span>{image.title}</span>
+            </div>
+          ) : (
+            <a
+              className="project-gallery-item"
+              href={image.src}
+              target="_blank"
+              rel="noreferrer"
+              key={image.src}
+              title={`Open ${image.title} in a new tab`}
+            >
+              <img
+                src={image.src}
+                alt={image.title}
+                loading="lazy"
+                onError={(event) => {
+                  event.currentTarget
+                    .closest('.project-gallery-item')
+                    ?.classList.add('media-unavailable');
+                }}
+              />
+              <span>{image.title}</span>
+            </a>
+          )
         ))}
       </div>
       <p className="gallery-hint">

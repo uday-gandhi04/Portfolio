@@ -196,6 +196,11 @@
   aspect-ratio: 16 / 10;
 }
 
+.project-gallery-item video {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
 .project-gallery-item span {
   padding: 5px 6px;
 }

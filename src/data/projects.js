@@ -1,6 +1,4 @@
 const github = (repo) => `https://github.com/${repo}`;
-const blenderImage = (file) =>
-  `https://raw.githubusercontent.com/uday-gandhi04/Blender/main/${file}`;
 
 // Project order follows the town layout: strongest and most interactive
 // work is placed closer to the entrance, with supporting experiments behind.
@@ -94,7 +92,12 @@ export const projects = [
     gallery: [
       {
         title: 'Living Room Render',
-        src: blenderImage('Living%20Room/Living%20Room.png'),
+        src: '/living-room-render.webp',
+      },
+      {
+        title: 'Sword Animation',
+        type: 'video',
+        src: 'https://raw.githubusercontent.com/uday-gandhi04/Blender/main/Sword/sword_v1.mp4',
       },
     ],
     galleryLink: github('uday-gandhi04/Blender'),
