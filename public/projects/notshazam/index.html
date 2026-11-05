@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10211d">
+
+  <title>NotShazam: Music Fingerprinting with Python | Uday Gandhi</title>
+  <meta name="description" content="Explore NotShazam, Uday Gandhi’s Python music-identification project using spectrogram fingerprints, MongoDB indexing and audio matching.">
+  <meta name="author" content="Uday Gandhi">
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical" href="https://udaygandhi.is-a.dev/projects/notshazam/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/project-case-study.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Uday's Stack">
+  <meta property="og:title" content="NotShazam: Music Fingerprinting with Python | Uday Gandhi">
+  <meta property="og:description" content="Explore NotShazam, Uday Gandhi’s Python music-identification project using spectrogram fingerprints, MongoDB indexing and audio matching.">
+  <meta property="og:url" content="https://udaygandhi.is-a.dev/projects/notshazam/">
+  <meta property="og:image" content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NotShazam: Music Fingerprinting with Python | Uday Gandhi">
+  <meta name="twitter:description" content="Explore NotShazam, Uday Gandhi’s Python music-identification project using spectrogram fingerprints, MongoDB indexing and audio matching.">
+  <meta name="twitter:image" content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://udaygandhi.is-a.dev/projects/notshazam/#page","url":"https://udaygandhi.is-a.dev/projects/notshazam/","name":"NotShazam: Music Fingerprinting with Python | Uday Gandhi","description":"Explore NotShazam, Uday Gandhi’s Python music-identification project using spectrogram fingerprints, MongoDB indexing and audio matching.","isPartOf":{"@id":"https://udaygandhi.is-a.dev/#website"},"about":{"@id":"https://udaygandhi.is-a.dev/#person"},"mainEntity":{"@id":"https://udaygandhi.is-a.dev/projects/notshazam/#software"}},{"@type":"SoftwareSourceCode","@id":"https://udaygandhi.is-a.dev/projects/notshazam/#software","name":"NotShazam","description":"Explore NotShazam, Uday Gandhi’s Python music-identification project using spectrogram fingerprints, MongoDB indexing and audio matching.","author":{"@id":"https://udaygandhi.is-a.dev/#person"},"codeRepository":"https://github.com/uday-gandhi04/Definitely-Not-Shazam","programmingLanguage":["Python"],"mainEntityOfPage":{"@id":"https://udaygandhi.is-a.dev/projects/notshazam/#page"}}]}</script>
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      UDAY'S STACK <small>by Uday Gandhi</small>
+    </a>
+    <nav>
+      <a href="/">Portfolio</a>
+      <a href="/about/">My Journey</a>
+      <a href="/resume.pdf">Résumé</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/projects/">Projects</a>
+      <span>/</span>
+      <span>NotShazam</span>
+    </nav>
+
+    <header class="project-hero">
+      <p class="eyebrow">
+        PROJECT CASE STUDY · Audio engineering / retrieval
+      </p>
+
+      <h1>NotShazam</h1>
+      <p class="subtitle">Music Fingerprinting &amp; Identification</p>
+      <p class="lead">A music identification system that transforms audio into compact fingerprints, indexes them, and matches a query clip against a song library.</p>
+
+      <p class="byline">
+        Project by <a href="/about/">Uday Gandhi</a>
+        · Research prototype
+      </p>
+
+      <div class="actions"><a class="button primary" href="https://github.com/uday-gandhi04/Definitely-Not-Shazam" target="_blank" rel="noopener noreferrer">Source code ↗</a></div>
+    </header>
+
+    
+      <section class="metrics" aria-label="Project highlights">
+        
+    <div class="metric">
+      <strong>350+</strong>
+      <span>songs in library</span>
+    </div>
+  
+    <div class="metric">
+      <strong>11M+</strong>
+      <span>indexed hashes</span>
+    </div>
+  
+    <div class="metric">
+      <strong>&lt;200 ms</strong>
+      <span>reported match latency</span>
+    </div>
+  
+      </section>
+    
+
+    <div class="columns">
+      <article class="article">
+        <section>
+          <p class="kicker">01 · OVERVIEW</p>
+          <h2>What the project does</h2>
+          <p>NotShazam generates spectrogram-derived audio fingerprints, stores indexed hashes in MongoDB, and compares query clips against a song library. The project records a library of more than 350 songs and over 11 million indexed hashes, with matching latency reported below 200 milliseconds.</p>
+        </section>
+
+        <section>
+          <p class="kicker">02 · IMPLEMENTATION</p>
+          <h2>Features and engineering work</h2>
+          <ul class="feature-list"><li>Generates and indexes spectrogram-derived audio hashes for a 350+ song library.</li><li>Uses fingerprint matching to identify audio, including clips sourced from YouTube streams.</li><li>Designed to retain matching robustness when recordings contain noise or distortion.</li><li>MongoDB stores the indexed fingerprint data for lookup.</li></ul>
+        </section>
+
+        
+      </article>
+
+      <aside class="side">
+        <section class="side-card">
+          <p class="kicker">TECHNOLOGY</p>
+          <h2>Tools and stack</h2>
+          <ul class="stack"><li>Python</li><li>MongoDB</li><li>Audio processing</li><li>Spectrogram hashing</li><li>Jupyter Notebook</li></ul>
+        </section>
+
+        <section class="side-card">
+          <p class="kicker">ABOUT THE AUTHOR</p>
+          <h2>Uday Gandhi</h2>
+          <p>
+            Computer Science graduate with Honors in Data Science,
+            building full-stack software and exploring applied AI/ML.
+          </p>
+          <a href="/about/">Explore my journey ↗</a>
+        </section>
+      </aside>
+    </div>
+
+    <section class="more">
+      <p class="kicker">CONTINUE EXPLORING</p>
+      <h2>More from Uday's Stack</h2>
+      <div class="more-links">
+        <a href="/projects/">All project case studies ↗</a>
+        <a href="/about/">The full journey ↗</a>
+        <a href="/resume.pdf">Download résumé ↓</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© Uday Gandhi · Uday's Stack</span>
+    <a href="mailto:udaygandhi2004@gmail.com">Get in touch ↗</a>
+  </footer>
+</body>
+</html>

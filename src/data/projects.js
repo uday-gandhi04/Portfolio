@@ -5,6 +5,10 @@ const github = (repo) => `https://github.com/${repo}`;
 export const projects = [
   {
     id: 'moboxd',
+    caseStudyUrl: '/projects/moboxd/',
+    seoTitle: 'MoBoxd: Full-Stack Social Platform | Uday Gandhi',
+    seoDescription: 'Explore MoBoxd, a full-stack social platform built by Uday Gandhi with React, Node.js, Express, MongoDB, image posts, reviews and ranking battles.',
+    programmingLanguages: ['JavaScript'],
     name: 'MoBoxd',
     subtitle: 'Social Platform',
     type: 'social',
@@ -35,6 +39,10 @@ export const projects = [
   },
   {
     id: 'ovacare',
+    caseStudyUrl: '/projects/ovacare/',
+    seoTitle: 'OvaCare: Computer Vision Research Prototype | Uday Gandhi',
+    seoDescription: 'Explore OvaCare, Uday Gandhi’s ultrasound image-analysis research prototype using PyTorch, SAM-based follicle segmentation and PCOS-related classification.',
+    programmingLanguages: ['Python', 'TypeScript'],
     name: 'OvaCare',
     subtitle: "Women's Health AI Research",
     type: 'hospital',
@@ -109,6 +117,11 @@ export const projects = [
   },
   {
     id: 'notshazam',
+    caseStudyUrl: '/projects/notshazam/',
+    seoTitle: 'NotShazam: Music Fingerprinting with Python | Uday Gandhi',
+    seoDescription: 'Explore NotShazam, Uday Gandhi’s Python music-identification project using spectrogram fingerprints, MongoDB indexing and audio matching.',
+    seoOverview: 'NotShazam generates spectrogram-derived audio fingerprints, stores indexed hashes in MongoDB, and compares query clips against a song library. The project records a library of more than 350 songs and over 11 million indexed hashes, with matching latency reported below 200 milliseconds.',
+    programmingLanguages: ['Python'],
     name: 'NotShazam',
     subtitle: 'Music Fingerprinting & Identification',
     type: 'music',
@@ -139,6 +152,10 @@ export const projects = [
   },
   {
     id: 'stemify',
+    caseStudyUrl: '/projects/stemify/',
+    seoTitle: 'Stemify: PyTorch Audio Source Separation | Uday Gandhi',
+    seoDescription: 'Explore Stemify, Uday Gandhi’s PyTorch audio source-separation project using a phase-aware U-Net-family model and a Flask web interface.',
+    programmingLanguages: ['Python'],
     name: 'Stemify',
     subtitle: 'AI Audio Source Separation',
     type: 'studio',

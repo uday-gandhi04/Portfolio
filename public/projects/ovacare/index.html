@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10211d">
+
+  <title>OvaCare: Computer Vision Research Prototype | Uday Gandhi</title>
+  <meta name="description" content="Explore OvaCare, Uday Gandhi’s ultrasound image-analysis research prototype using PyTorch, SAM-based follicle segmentation and PCOS-related classification.">
+  <meta name="author" content="Uday Gandhi">
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical" href="https://udaygandhi.is-a.dev/projects/ovacare/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/project-case-study.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Uday's Stack">
+  <meta property="og:title" content="OvaCare: Computer Vision Research Prototype | Uday Gandhi">
+  <meta property="og:description" content="Explore OvaCare, Uday Gandhi’s ultrasound image-analysis research prototype using PyTorch, SAM-based follicle segmentation and PCOS-related classification.">
+  <meta property="og:url" content="https://udaygandhi.is-a.dev/projects/ovacare/">
+  <meta property="og:image" content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OvaCare: Computer Vision Research Prototype | Uday Gandhi">
+  <meta name="twitter:description" content="Explore OvaCare, Uday Gandhi’s ultrasound image-analysis research prototype using PyTorch, SAM-based follicle segmentation and PCOS-related classification.">
+  <meta name="twitter:image" content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://udaygandhi.is-a.dev/projects/ovacare/#page","url":"https://udaygandhi.is-a.dev/projects/ovacare/","name":"OvaCare: Computer Vision Research Prototype | Uday Gandhi","description":"Explore OvaCare, Uday Gandhi’s ultrasound image-analysis research prototype using PyTorch, SAM-based follicle segmentation and PCOS-related classification.","isPartOf":{"@id":"https://udaygandhi.is-a.dev/#website"},"about":{"@id":"https://udaygandhi.is-a.dev/#person"},"mainEntity":{"@id":"https://udaygandhi.is-a.dev/projects/ovacare/#software"}},{"@type":"SoftwareSourceCode","@id":"https://udaygandhi.is-a.dev/projects/ovacare/#software","name":"OvaCare","description":"Explore OvaCare, Uday Gandhi’s ultrasound image-analysis research prototype using PyTorch, SAM-based follicle segmentation and PCOS-related classification.","author":{"@id":"https://udaygandhi.is-a.dev/#person"},"codeRepository":"https://github.com/uday-gandhi04/OvaCare","programmingLanguage":["Python","TypeScript"],"mainEntityOfPage":{"@id":"https://udaygandhi.is-a.dev/projects/ovacare/#page"}}]}</script>
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      UDAY'S STACK <small>by Uday Gandhi</small>
+    </a>
+    <nav>
+      <a href="/">Portfolio</a>
+      <a href="/about/">My Journey</a>
+      <a href="/resume.pdf">Résumé</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/projects/">Projects</a>
+      <span>/</span>
+      <span>OvaCare</span>
+    </nav>
+
+    <header class="project-hero">
+      <p class="eyebrow">
+        PROJECT CASE STUDY · AI / medical imaging research
+      </p>
+
+      <h1>OvaCare</h1>
+      <p class="subtitle">Women&#39;s Health AI Research</p>
+      <p class="lead">An AI-assisted ultrasound analysis workflow that segments ovarian follicles, measures detected regions, and combines imaging outputs with a PCOS-classification model.</p>
+
+      <p class="byline">
+        Project by <a href="/about/">Uday Gandhi</a>
+        · Research prototype
+      </p>
+
+      <div class="actions"><a class="button primary" href="https://github.com/uday-gandhi04/OvaCare" target="_blank" rel="noopener noreferrer">Source code ↗</a></div>
+    </header>
+
+    
+      <section class="metrics" aria-label="Project highlights">
+        
+    <div class="metric">
+      <strong>SAM</strong>
+      <span>follicle segmentation</span>
+    </div>
+  
+    <div class="metric">
+      <strong>MobileNetV2</strong>
+      <span>classification model</span>
+    </div>
+  
+    <div class="metric">
+      <strong>Full stack</strong>
+      <span>Flask + Next.js</span>
+    </div>
+  
+      </section>
+    
+
+    <div class="columns">
+      <article class="article">
+        <section>
+          <p class="kicker">01 · OVERVIEW</p>
+          <h2>What the project does</h2>
+          <p>The project brings image processing and model output into one reporting workflow. It is presented as an engineering/research prototype; its outputs should not be treated as a clinically validated diagnosis.</p>
+        </section>
+
+        <section>
+          <p class="kicker">02 · IMPLEMENTATION</p>
+          <h2>Features and engineering work</h2>
+          <ul class="feature-list"><li>Parallel model workflow: SAM-based follicle segmentation and MobileNetV2-based PCOS classification.</li><li>Image preprocessing, candidate-mask filtering, follicle measurement, and color-coded result visualisation.</li><li>Frontend built with Next.js and TypeScript; Flask serves the analysis backend.</li><li>The repository describes analysis based on follicle counts and Rotterdam-criteria-related outputs.</li></ul>
+        </section>
+
+        <aside class="disclaimer">
+        <strong>Research limitation:</strong>
+        Research prototype only. Not clinically validated and not a substitute for assessment by a qualified healthcare professional.
+       </aside>
+      </article>
+
+      <aside class="side">
+        <section class="side-card">
+          <p class="kicker">TECHNOLOGY</p>
+          <h2>Tools and stack</h2>
+          <ul class="stack"><li>Python</li><li>Flask</li><li>PyTorch</li><li>SAM ViT-H</li><li>MobileNetV2</li><li>OpenCV</li><li>Next.js</li><li>TypeScript</li><li>Tailwind CSS</li></ul>
+        </section>
+
+        <section class="side-card">
+          <p class="kicker">ABOUT THE AUTHOR</p>
+          <h2>Uday Gandhi</h2>
+          <p>
+            Computer Science graduate with Honors in Data Science,
+            building full-stack software and exploring applied AI/ML.
+          </p>
+          <a href="/about/">Explore my journey ↗</a>
+        </section>
+      </aside>
+    </div>
+
+    <section class="more">
+      <p class="kicker">CONTINUE EXPLORING</p>
+      <h2>More from Uday's Stack</h2>
+      <div class="more-links">
+        <a href="/projects/">All project case studies ↗</a>
+        <a href="/about/">The full journey ↗</a>
+        <a href="/resume.pdf">Download résumé ↓</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© Uday Gandhi · Uday's Stack</span>
+    <a href="mailto:udaygandhi2004@gmail.com">Get in touch ↗</a>
+  </footer>
+</body>
+</html>

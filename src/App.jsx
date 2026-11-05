@@ -279,6 +279,17 @@ function ProjectPanel({ project, onClose }) {
         <ProfileDetails profile={project.profile} />
       ) : (
         <>
+          {project.caseStudyUrl && (
+            <a
+              className="project-case-study-link"
+              href={project.caseStudyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read the project case study <span aria-hidden="true">↗</span>
+            </a>
+          )}
+
           <MetricStrip metrics={project.metrics} />
           <HighlightList items={project.highlights} title="What I built" />
 
@@ -491,11 +502,11 @@ export default function App() {
 
   useEffect(() => {
     const pageTitle = showJourney
-      ? 'About Uday Gandhi | Software Engineer & AI/ML Developer'
-      : 'Uday Gandhi | Software Engineer & AI/ML Developer';
+      ? 'About Uday Gandhi | Full-Stack & Applied AI/ML'
+      : 'Uday Gandhi | Software Engineer & Applied AI/ML';
     const pageDescription = showJourney
-      ? "Explore Uday Gandhi's education, Cognizant internship, software engineering projects, applied AI/ML work, and resume."
-      : 'Uday Gandhi is a Computer Science graduate with Honors in Data Science, building full-stack applications and exploring applied AI/ML. Explore his software engineering projects.';
+      ? "Explore Uday Gandhi's education, completed Cognizant MERN Stack Developer internship, full-stack projects, and applied AI/ML work."
+      : 'Uday Gandhi is a Computer Science graduate with Honors in Data Science, building full-stack software and exploring applied AI/ML with Python, React, Node.js and PyTorch.';
 
     document.title = pageTitle;
     document.querySelector('meta[name="description"]')?.setAttribute('content', pageDescription);
@@ -776,7 +787,7 @@ export default function App() {
       {!showJourney && <section className="hero-copy" aria-label="Introduction">
         <span className="eyebrow">
           <span className="status-dot" />
-          OPEN WORLD · SOFTWARE · AI
+          UDAY GANDHI · SOFTWARE · APPLIED AI/ML
         </span>
 
         <h1>
@@ -785,7 +796,10 @@ export default function App() {
           <em>of things I've built.</em>
         </h1>
 
-        <p>Explore the projects, one building at a time.</p>
+        <p>
+          Computer Science graduate with Honors in Data Science,
+          building full-stack products and exploring applied AI/ML.
+        </p>
       </section>}
 
       {!showJourney && <div className="view-switcher" aria-label="Change camera view">

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10211d">
+
+  <title>Stemify: PyTorch Audio Source Separation | Uday Gandhi</title>
+  <meta name="description" content="Explore Stemify, Uday Gandhi’s PyTorch audio source-separation project using a phase-aware U-Net-family model and a Flask web interface.">
+  <meta name="author" content="Uday Gandhi">
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical" href="https://udaygandhi.is-a.dev/projects/stemify/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/project-case-study.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Uday's Stack">
+  <meta property="og:title" content="Stemify: PyTorch Audio Source Separation | Uday Gandhi">
+  <meta property="og:description" content="Explore Stemify, Uday Gandhi’s PyTorch audio source-separation project using a phase-aware U-Net-family model and a Flask web interface.">
+  <meta property="og:url" content="https://udaygandhi.is-a.dev/projects/stemify/">
+  <meta property="og:image" content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stemify: PyTorch Audio Source Separation | Uday Gandhi">
+  <meta name="twitter:description" content="Explore Stemify, Uday Gandhi’s PyTorch audio source-separation project using a phase-aware U-Net-family model and a Flask web interface.">
+  <meta name="twitter:image" content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://udaygandhi.is-a.dev/projects/stemify/#page","url":"https://udaygandhi.is-a.dev/projects/stemify/","name":"Stemify: PyTorch Audio Source Separation | Uday Gandhi","description":"Explore Stemify, Uday Gandhi’s PyTorch audio source-separation project using a phase-aware U-Net-family model and a Flask web interface.","isPartOf":{"@id":"https://udaygandhi.is-a.dev/#website"},"about":{"@id":"https://udaygandhi.is-a.dev/#person"},"mainEntity":{"@id":"https://udaygandhi.is-a.dev/projects/stemify/#software"}},{"@type":"SoftwareSourceCode","@id":"https://udaygandhi.is-a.dev/projects/stemify/#software","name":"Stemify","description":"Explore Stemify, Uday Gandhi’s PyTorch audio source-separation project using a phase-aware U-Net-family model and a Flask web interface.","author":{"@id":"https://udaygandhi.is-a.dev/#person"},"codeRepository":"https://github.com/uday-gandhi04/Stemify-Audio_Separation_App","programmingLanguage":["Python"],"mainEntityOfPage":{"@id":"https://udaygandhi.is-a.dev/projects/stemify/#page"}}]}</script>
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      UDAY'S STACK <small>by Uday Gandhi</small>
+    </a>
+    <nav>
+      <a href="/">Portfolio</a>
+      <a href="/about/">My Journey</a>
+      <a href="/resume.pdf">Résumé</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/projects/">Projects</a>
+      <span>/</span>
+      <span>Stemify</span>
+    </nav>
+
+    <header class="project-hero">
+      <p class="eyebrow">
+        PROJECT CASE STUDY · Deep learning / audio
+      </p>
+
+      <h1>Stemify</h1>
+      <p class="subtitle">AI Audio Source Separation</p>
+      <p class="lead">An AI audio-separation application that splits a mixed track into vocal and instrumental stems using a phase-aware U-Net-family model.</p>
+
+      <p class="byline">
+        Project by <a href="/about/">Uday Gandhi</a>
+        · Model + web interface
+      </p>
+
+      <div class="actions"><a class="button primary" href="https://github.com/uday-gandhi04/Stemify-Audio_Separation_App" target="_blank" rel="noopener noreferrer">Source code ↗</a></div>
+    </header>
+
+    
+      <section class="metrics" aria-label="Project highlights">
+        
+    <div class="metric">
+      <strong>U-Net</strong>
+      <span>source-separation model</span>
+    </div>
+  
+    <div class="metric">
+      <strong>WAV / MP3</strong>
+      <span>input formats</span>
+    </div>
+  
+    <div class="metric">
+      <strong>PDF / XML</strong>
+      <span>transcription export</span>
+    </div>
+  
+      </section>
+    
+
+    <div class="columns">
+      <article class="article">
+        <section>
+          <p class="kicker">01 · OVERVIEW</p>
+          <h2>What the project does</h2>
+          <p>The project connects a custom deep-learning pipeline to a usable web workflow: upload audio, choose the separation output, run inference, and download the resulting stems.</p>
+        </section>
+
+        <section>
+          <p class="kicker">02 · IMPLEMENTATION</p>
+          <h2>Features and engineering work</h2>
+          <ul class="feature-list"><li>Targets vocals, drums, bass, and other instrumental components from mixed audio.</li><li>Uses a phase-aware U-Net-based architecture and a composite loss intended to reduce separation artefacts.</li><li>Flask web interface accepts WAV/MP3 uploads and provides downloadable separated stems.</li><li>The resume also describes STFT-based tempo analysis and sheet-music transcription with PDF/XML export.</li></ul>
+        </section>
+
+        
+      </article>
+
+      <aside class="side">
+        <section class="side-card">
+          <p class="kicker">TECHNOLOGY</p>
+          <h2>Tools and stack</h2>
+          <ul class="stack"><li>Python</li><li>PyTorch</li><li>DeepMultiSourceUNet</li><li>MUSDB18</li><li>Librosa</li><li>Flask</li><li>React</li></ul>
+        </section>
+
+        <section class="side-card">
+          <p class="kicker">ABOUT THE AUTHOR</p>
+          <h2>Uday Gandhi</h2>
+          <p>
+            Computer Science graduate with Honors in Data Science,
+            building full-stack software and exploring applied AI/ML.
+          </p>
+          <a href="/about/">Explore my journey ↗</a>
+        </section>
+      </aside>
+    </div>
+
+    <section class="more">
+      <p class="kicker">CONTINUE EXPLORING</p>
+      <h2>More from Uday's Stack</h2>
+      <div class="more-links">
+        <a href="/projects/">All project case studies ↗</a>
+        <a href="/about/">The full journey ↗</a>
+        <a href="/resume.pdf">Download résumé ↓</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© Uday Gandhi · Uday's Stack</span>
+    <a href="mailto:udaygandhi2004@gmail.com">Get in touch ↗</a>
+  </footer>
+</body>
+</html>
