@@ -244,7 +244,7 @@ function ProjectPanel({ project, onClose }) {
   return (
     <aside className={`project-panel${isProfile ? ' project-panel-profile' : ''}`} aria-label={`${project.name} details`}>
       <div className="panel-topline">
-        <span className="eyebrow">{isProfile ? 'ABOUT / RÉSUMÉ' : 'PROJECT SPOTLIGHT'}</span>
+        <span className="eyebrow">{isProfile ? 'PERSONAL PROFILE' : 'PROJECT SPOTLIGHT'}</span>
         <button className="icon-button" onClick={onClose} aria-label="Close details">×</button>
       </div>
 
@@ -264,6 +264,16 @@ function ProjectPanel({ project, onClose }) {
       </div>
 
       <p className="project-description">{project.description}</p>
+
+      {isProfile && (
+        <a className="hq-journey-link" href="/about/">
+          <span>
+            <strong>Explore my journey</strong>
+            <small>Discover the story behind my work and projects</small>
+          </span>
+          <span className="hq-journey-arrow" aria-hidden="true">↗</span>
+        </a>
+      )}
 
       {isProfile ? (
         <ProfileDetails profile={project.profile} />
@@ -739,7 +749,7 @@ export default function App() {
           </button>
 
           <a
-            className="nav-button"
+            className="nav-button nav-button-link"
             href="/about/"
             onClick={(event) => {
               if (
@@ -756,7 +766,7 @@ export default function App() {
               openJourney();
             }}
           >
-            About / Resume
+            My Journey <span>↗</span>
           </a>
         </nav>
       </header>
