@@ -603,20 +603,15 @@ export default function App() {
    * uses the isometric project-detail camera.
    */
   const chooseProject = (project) => {
-     if (project?.id === 'about') {
-       openJourney();
-       return;
-     }
+   keysRef.current.clear();
+   setSelectedProject(project);
+   setShowDirectory(false);
 
-     keysRef.current.clear();
-    setSelectedProject(project);
-    setShowDirectory(false);
+   if (viewMode === 'drive') {
+     setViewMode('iso');
+   }
 
-    if (viewMode === 'drive') {
-      setViewMode('iso');
-    }
-
-    setTransitioning(true);
+   setTransitioning(true);
   };
 
   /*
