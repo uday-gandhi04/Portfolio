@@ -50,7 +50,464 @@ function projectSchema(project, url, description) {
   };
 }
 
+function renderDetailedHowItWorks(project) {
+  switch (project.id) {
+    case 'stemify':
+      return `
+        <section>
+          <p class="kicker">03 · HOW IT WORKS</p>
+          <h2>From a mixed track to individual stems</h2>
+
+          <p>
+            Stemify processes an uploaded audio track through a
+            phase-aware deep learning pipeline. Its DeepMultiSourceUNet
+            model estimates individual sources from the mixed recording,
+            producing separated audio stems.
+          </p>
+
+          <ol class="feature-list">
+            <li>
+              <strong>Audio input:</strong>
+              The user uploads a WAV or MP3 recording through the Flask
+              web interface.
+            </li>
+
+            <li>
+              <strong>Audio preparation:</strong>
+              The input is prepared for the model's audio-separation
+              workflow.
+            </li>
+
+            <li>
+              <strong>Deep learning inference:</strong>
+              The phase-aware DeepMultiSourceUNet model processes
+              the mixed audio and estimates its individual sources.
+            </li>
+
+            <li>
+              <strong>Multi-source separation:</strong>
+              The model produces separate stems for vocals, drums,
+              bass and other instruments.
+            </li>
+
+            <li>
+              <strong>Output delivery:</strong>
+              The Flask application makes the separated audio outputs
+              available for download.
+            </li>
+          </ol>
+
+          <h3>Training approach</h3>
+
+          <p>
+            The model is trained using the MUSDB18 dataset. Its
+            composite objective combines mean squared error,
+            phase consistency, source independence and magnitude-sum
+            terms to guide the separation process.
+          </p>
+        </section>`;
+    case 'notshazam':
+      return `
+        <section>
+          <p class="kicker">03 · HOW IT WORKS</p>
+          <h2>Matching a sound against a fingerprint library</h2>
+
+          <p>
+            NotShazam identifies audio by converting music into
+            compact fingerprints and comparing those fingerprints
+            against an indexed song collection stored in MongoDB.
+          </p>
+
+          <ol class="feature-list">
+            <li>
+              <strong>Build the fingerprint library:</strong>
+              Songs are processed to generate compact audio
+              fingerprints. These fingerprints are stored and indexed
+              in MongoDB alongside their associated track information.
+            </li>
+
+            <li>
+              <strong>Capture a query:</strong>
+              A short audio clip is supplied for identification.
+            </li>
+
+            <li>
+              <strong>Generate query fingerprints:</strong>
+              The query audio is processed into fingerprint
+              representations compatible with the indexed library.
+            </li>
+
+            <li>
+              <strong>Search for a match:</strong>
+              The generated fingerprints are compared against
+              the stored collection to identify matching patterns
+              and candidate tracks.
+            </li>
+
+            <li>
+              <strong>Return the result:</strong>
+              The matching catalog entry is retrieved and presented
+              as the identified song.
+            </li>
+          </ol>
+
+          <h3>Why fingerprinting matters</h3>
+
+          <p>
+            Instead of comparing entire audio recordings directly,
+            the system uses compact fingerprint representations
+            to make matching against a large indexed collection
+            more practical.
+          </p>
+
+          <aside class="disclaimer">
+            <strong>Current scope:</strong>
+            NotShazam identifies tracks that have already been
+            fingerprinted and added to its database. It does not
+            currently recognise arbitrary songs outside its
+            indexed library.
+          </aside>
+        </section>`;
+    case 'ovacare':
+      return `
+        <section>
+          <p class="kicker">03 · HOW IT WORKS</p>
+          <h2>From ultrasound images to structured analysis</h2>
+
+          <p>
+            OvaCare processes ovarian ultrasound images through
+            an image-analysis pipeline that combines follicle
+            segmentation, measurement and PCOS-related classification
+            experiments.
+          </p>
+
+          <ol class="feature-list">
+            <li>
+              <strong>Image upload:</strong>
+              An ultrasound image is submitted through the Next.js
+              interface and sent to the Flask backend along with
+              its pixel-to-millimetre calibration information.
+            </li>
+
+            <li>
+              <strong>Image preprocessing:</strong>
+              The image is validated, converted to grayscale
+              and adaptively upscaled to prepare it for segmentation.
+            </li>
+
+            <li>
+              <strong>Follicle segmentation:</strong>
+              The SAM ViT-H model generates candidate segmentation
+              masks for potential follicle regions.
+            </li>
+
+            <li>
+              <strong>Detection refinement:</strong>
+              Candidate masks pass through filtering stages
+              that consider size, shape, image brightness,
+              border proximity, overlap and spatial clustering.
+            </li>
+
+            <li>
+              <strong>Follicle measurement:</strong>
+              The system calculates Equivalent Circular Diameter
+              (ECD) and converts image measurements into
+              millimetres using the supplied calibration factor.
+            </li>
+
+            <li>
+              <strong>Analysis and visualisation:</strong>
+              The project combines its segmentation and
+              classification workflow to generate follicle
+              overlays, measurement summaries and experimental
+              PCOS-related analysis outputs.
+            </li>
+          </ol>
+
+          <h3>Visualising the results</h3>
+
+          <p>
+            Detected regions are displayed with size-based colour
+            classifications and measurement overlays. The
+            application also organises analysis results into
+            statistics, visualisations and detailed result views.
+          </p>
+
+          <aside class="disclaimer">
+            <strong>Research limitation:</strong>
+            OvaCare is an experimental research prototype.
+            Its outputs are not clinically validated diagnoses
+            or medical recommendations, and must not replace
+            assessment by a qualified healthcare professional.
+          </aside>
+        </section>`;
+    default:
+      return `
+        <section>
+          <p class="kicker">03 · PRODUCT DESIGN</p>
+          <h2>How it works</h2>
+          <p>${esc(project.details || project.description)}</p>
+        </section>`;
+  }
+}
+
 function renderProject(project) {
+  if (project.id === 'moboxd') {
+    return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10211d">
+
+  <title>MoBoxd: Full-Stack Social Platform | Uday Gandhi</title>
+
+  <meta name="description"
+    content="Explore MoBoxd, a full-stack social platform built by Uday Gandhi with React, Node.js, Express, MongoDB, image posts, reviews and ranking battles.">
+
+  <meta name="author" content="Uday Gandhi">
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical"
+    href="https://udaygandhi.is-a.dev/projects/moboxd/">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/project-case-study.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Uday's Stack">
+  <meta property="og:title"
+    content="MoBoxd: Full-Stack Social Platform | Uday Gandhi">
+  <meta property="og:description"
+    content="A Letterboxd-inspired social platform for sharing everyday moments, publishing posts and reviews, and competing in ranking battles.">
+  <meta property="og:url"
+    content="https://udaygandhi.is-a.dev/projects/moboxd/">
+  <meta property="og:image"
+    content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+    content="MoBoxd: Full-Stack Social Platform | Uday Gandhi">
+  <meta name="twitter:description"
+    content="A full-stack social platform built with React, Node.js, Express and MongoDB.">
+  <meta name="twitter:image"
+    content="https://udaygandhi.is-a.dev/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://udaygandhi.is-a.dev/projects/moboxd/#page",
+        "url": "https://udaygandhi.is-a.dev/projects/moboxd/",
+        "name": "MoBoxd: Full-Stack Social Platform | Uday Gandhi",
+        "isPartOf": {
+          "@id": "https://udaygandhi.is-a.dev/#website"
+        },
+        "about": {
+          "@id": "https://udaygandhi.is-a.dev/#person"
+        },
+        "mainEntity": {
+          "@id": "https://udaygandhi.is-a.dev/projects/moboxd/#software"
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://udaygandhi.is-a.dev/projects/moboxd/#software",
+        "name": "MoBoxd",
+        "description": "A Letterboxd-inspired social platform for sharing everyday moments, publishing posts and reviews, and competing in ranking battles.",
+        "author": {
+          "@id": "https://udaygandhi.is-a.dev/#person"
+        },
+        "codeRepository": "https://github.com/uday-gandhi04/MoBoxd",
+        "programmingLanguage": "JavaScript",
+        "runtimePlatform": "Web browser",
+        "mainEntityOfPage": {
+          "@id": "https://udaygandhi.is-a.dev/projects/moboxd/#page"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      UDAY'S STACK
+      <small>by Uday Gandhi</small>
+    </a>
+
+    <nav>
+      <a href="/">Portfolio</a>
+      <a href="/about/">My Journey</a>
+      <a href="/resume.pdf">Résumé</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/projects/">Projects</a>
+      <span>/</span>
+      <span>MoBoxd</span>
+    </nav>
+
+    <header class="project-hero">
+      <p class="eyebrow">PROJECT CASE STUDY · FULL-STACK PRODUCT</p>
+
+      <h1>MoBoxd</h1>
+
+      <p class="subtitle">A social platform for everyday moments</p>
+
+      <p class="lead">
+        A Letterboxd-inspired social platform for sharing everyday
+        moments, publishing posts and reviews, and competing in
+        ranking battles with different visibility options.
+      </p>
+
+      <p class="byline">
+        Project by <a href="/about/">Uday Gandhi</a>
+        · Full-stack product
+      </p>
+
+      <div class="actions">
+        <a class="button primary"
+          href="https://github.com/uday-gandhi04/MoBoxd"
+          target="_blank"
+          rel="noopener noreferrer">
+          Source code ↗
+        </a>
+
+        <a class="button"
+          href="https://moboxd.onrender.com/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Live demo ↗
+        </a>
+      </div>
+    </header>
+
+    <section class="metrics" aria-label="Project highlights">
+      <div class="metric">
+        <strong>MERN</strong>
+        <span>Full-stack application</span>
+      </div>
+
+      <div class="metric">
+        <strong>3 modes</strong>
+        <span>Ranking visibility</span>
+      </div>
+
+      <div class="metric">
+        <strong>Live</strong>
+        <span>Hosted demonstration</span>
+      </div>
+    </section>
+
+    <div class="columns">
+      <article class="article">
+        <section>
+          <p class="kicker">01 · OVERVIEW</p>
+          <h2>What the project does</h2>
+
+          <p>
+            MoBoxd is a social platform inspired by Letterboxd,
+            adapted for sharing everyday moments rather than
+            maintaining a static catalogue. Users can publish
+            image-based posts, interact with content, write reviews,
+            and participate in ranking battles.
+          </p>
+        </section>
+
+        <section>
+          <p class="kicker">02 · IMPLEMENTATION</p>
+          <h2>Features and engineering work</h2>
+
+          <ul class="feature-list">
+            <li>
+              Authentication and account-based social interactions.
+            </li>
+            <li>
+              Image posts with captions, categories and author ratings.
+            </li>
+            <li>
+              Reviews and ranking battles with public, follower-only,
+              and private/shared-link visibility.
+            </li>
+            <li>
+              Separate frontend and backend, with Cloudinary handling
+              uploaded media.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <p class="kicker">03 · PRODUCT DESIGN</p>
+          <h2>How it works</h2>
+
+          <p>
+            The application is organised around a social feed.
+            Users publish content, interact with posts, write reviews,
+            and create ranking battles with different visibility rules.
+            This makes content access and social interactions part
+            of the product's core functionality.
+          </p>
+        </section>
+      </article>
+
+      <aside class="side">
+        <section class="side-card">
+          <p class="kicker">TECHNOLOGY</p>
+          <h2>Stack and tools</h2>
+
+          <ul class="stack">
+            <li>React</li>
+            <li>Vite</li>
+            <li>Bootstrap 5</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>MongoDB</li>
+            <li>Cloudinary</li>
+            <li>JWT</li>
+          </ul>
+        </section>
+
+        <section class="side-card">
+          <p class="kicker">ABOUT THE AUTHOR</p>
+          <h2>Uday Gandhi</h2>
+
+          <p>
+            Computer Science graduate with Honors in Data Science,
+            building full-stack software and exploring applied AI/ML.
+          </p>
+
+          <a href="/about/">Explore my journey ↗</a>
+        </section>
+      </aside>
+    </div>
+
+    <section class="more">
+      <p class="kicker">CONTINUE EXPLORING</p>
+      <h2>More from Uday's Stack</h2>
+      <div class="more-links">
+        <a href="/projects/">All project case studies ↗</a>
+        <a href="/about/">The full journey ↗</a>
+        <a href="/resume.pdf">Download résumé ↓</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© Uday Gandhi · Uday's Stack</span>
+    <a href="mailto:udaygandhi2004@gmail.com">Get in touch ↗</a>
+  </footer>
+</body>
+</html>`;
+  }
+
   const url = urlFor(project);
   const title = project.seoTitle;
   const description = project.seoDescription;
@@ -177,6 +634,8 @@ function renderProject(project) {
           <h2>Features and engineering work</h2>
           <ul class="feature-list">${highlights}</ul>
         </section>
+
+        ${renderDetailedHowItWorks(project)}
 
         ${disclaimer}
       </article>

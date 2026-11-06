@@ -103,6 +103,68 @@
         </section>
 
         
+        <section>
+          <p class="kicker">03 · HOW IT WORKS</p>
+          <h2>Matching a sound against a fingerprint library</h2>
+
+          <p>
+            NotShazam identifies audio by converting music into
+            compact fingerprints and comparing those fingerprints
+            against an indexed song collection stored in MongoDB.
+          </p>
+
+          <ol class="feature-list">
+            <li>
+              <strong>Build the fingerprint library:</strong>
+              Songs are processed to generate compact audio
+              fingerprints. These fingerprints are stored and indexed
+              in MongoDB alongside their associated track information.
+            </li>
+
+            <li>
+              <strong>Capture a query:</strong>
+              A short audio clip is supplied for identification.
+            </li>
+
+            <li>
+              <strong>Generate query fingerprints:</strong>
+              The query audio is processed into fingerprint
+              representations compatible with the indexed library.
+            </li>
+
+            <li>
+              <strong>Search for a match:</strong>
+              The generated fingerprints are compared against
+              the stored collection to identify matching patterns
+              and candidate tracks.
+            </li>
+
+            <li>
+              <strong>Return the result:</strong>
+              The matching catalog entry is retrieved and presented
+              as the identified song.
+            </li>
+          </ol>
+
+          <h3>Why fingerprinting matters</h3>
+
+          <p>
+            Instead of comparing entire audio recordings directly,
+            the system uses compact fingerprint representations
+            to make matching against a large indexed collection
+            more practical.
+          </p>
+
+          <aside class="disclaimer">
+            <strong>Current scope:</strong>
+            NotShazam identifies tracks that have already been
+            fingerprinted and added to its database. It does not
+            currently recognise arbitrary songs outside its
+            indexed library.
+          </aside>
+        </section>
+
+        
       </article>
 
       <aside class="side">

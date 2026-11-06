@@ -102,6 +102,79 @@
           <ul class="feature-list"><li>Parallel model workflow: SAM-based follicle segmentation and MobileNetV2-based PCOS classification.</li><li>Image preprocessing, candidate-mask filtering, follicle measurement, and color-coded result visualisation.</li><li>Frontend built with Next.js and TypeScript; Flask serves the analysis backend.</li><li>The repository describes analysis based on follicle counts and Rotterdam-criteria-related outputs.</li></ul>
         </section>
 
+        
+        <section>
+          <p class="kicker">03 · HOW IT WORKS</p>
+          <h2>From ultrasound images to structured analysis</h2>
+
+          <p>
+            OvaCare processes ovarian ultrasound images through
+            an image-analysis pipeline that combines follicle
+            segmentation, measurement and PCOS-related classification
+            experiments.
+          </p>
+
+          <ol class="feature-list">
+            <li>
+              <strong>Image upload:</strong>
+              An ultrasound image is submitted through the Next.js
+              interface and sent to the Flask backend along with
+              its pixel-to-millimetre calibration information.
+            </li>
+
+            <li>
+              <strong>Image preprocessing:</strong>
+              The image is validated, converted to grayscale
+              and adaptively upscaled to prepare it for segmentation.
+            </li>
+
+            <li>
+              <strong>Follicle segmentation:</strong>
+              The SAM ViT-H model generates candidate segmentation
+              masks for potential follicle regions.
+            </li>
+
+            <li>
+              <strong>Detection refinement:</strong>
+              Candidate masks pass through filtering stages
+              that consider size, shape, image brightness,
+              border proximity, overlap and spatial clustering.
+            </li>
+
+            <li>
+              <strong>Follicle measurement:</strong>
+              The system calculates Equivalent Circular Diameter
+              (ECD) and converts image measurements into
+              millimetres using the supplied calibration factor.
+            </li>
+
+            <li>
+              <strong>Analysis and visualisation:</strong>
+              The project combines its segmentation and
+              classification workflow to generate follicle
+              overlays, measurement summaries and experimental
+              PCOS-related analysis outputs.
+            </li>
+          </ol>
+
+          <h3>Visualising the results</h3>
+
+          <p>
+            Detected regions are displayed with size-based colour
+            classifications and measurement overlays. The
+            application also organises analysis results into
+            statistics, visualisations and detailed result views.
+          </p>
+
+          <aside class="disclaimer">
+            <strong>Research limitation:</strong>
+            OvaCare is an experimental research prototype.
+            Its outputs are not clinically validated diagnoses
+            or medical recommendations, and must not replace
+            assessment by a qualified healthcare professional.
+          </aside>
+        </section>
+
         <aside class="disclaimer">
         <strong>Research limitation:</strong>
         Research prototype only. Not clinically validated and not a substitute for assessment by a qualified healthcare professional.

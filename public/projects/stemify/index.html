@@ -103,6 +103,60 @@
         </section>
 
         
+        <section>
+          <p class="kicker">03 · HOW IT WORKS</p>
+          <h2>From a mixed track to individual stems</h2>
+
+          <p>
+            Stemify processes an uploaded audio track through a
+            phase-aware deep learning pipeline. Its DeepMultiSourceUNet
+            model estimates individual sources from the mixed recording,
+            producing separated audio stems.
+          </p>
+
+          <ol class="feature-list">
+            <li>
+              <strong>Audio input:</strong>
+              The user uploads a WAV or MP3 recording through the Flask
+              web interface.
+            </li>
+
+            <li>
+              <strong>Audio preparation:</strong>
+              The input is prepared for the model's audio-separation
+              workflow.
+            </li>
+
+            <li>
+              <strong>Deep learning inference:</strong>
+              The phase-aware DeepMultiSourceUNet model processes
+              the mixed audio and estimates its individual sources.
+            </li>
+
+            <li>
+              <strong>Multi-source separation:</strong>
+              The model produces separate stems for vocals, drums,
+              bass and other instruments.
+            </li>
+
+            <li>
+              <strong>Output delivery:</strong>
+              The Flask application makes the separated audio outputs
+              available for download.
+            </li>
+          </ol>
+
+          <h3>Training approach</h3>
+
+          <p>
+            The model is trained using the MUSDB18 dataset. Its
+            composite objective combines mean squared error,
+            phase consistency, source independence and magnitude-sum
+            terms to guide the separation process.
+          </p>
+        </section>
+
+        
       </article>
 
       <aside class="side">
