@@ -94,7 +94,7 @@ export const projects = [
       'Whisky Glass: a material and transparent-glass rendering study.',
     ],
     details:
-      'The Living Room render is shown below. The other works link to their repository folders because their exact public render-image filenames have not been verified; this avoids showing broken or guessed thumbnails.',
+      'Each scene is modelled, refined with materials and lighting, then rendered. The studies range from interiors and architecture to product forms.',
     github: github('uday-gandhi04/Blender'),
     demo: '',
     gallery: [
@@ -146,7 +146,7 @@ export const projects = [
       { value: '<200 ms', label: 'reported match latency' },
     ],
     details:
-      'The reported benchmark figures come from the project resume: the indexed library exceeds 11 million hashes, and the matching path was reported below 200 ms. Keep these as measured project results and be prepared to explain the benchmark setup.',
+      'Songs are converted into spectrogram fingerprints and indexed in MongoDB. A query clip is fingerprinted the same way, then matched against the library to identify the track.',
     github: github('uday-gandhi04/Definitely-Not-Shazam'),
     demo: '',
   },
@@ -205,7 +205,7 @@ export const projects = [
       'The current README describes the answer being printed to the console; a richer GUI is listed as a future improvement.',
     ],
     details:
-      'A good demonstration project because the interaction is visible: webcam input becomes a drawn expression, a gesture submits it, and a generative model attempts to solve it.',
+      'The webcam tracks hand landmarks as the index finger draws on a virtual canvas. Gestures clear or submit the expression to Gemini, which returns a solution in the console.',
     github: github('uday-gandhi04/MathsUsingHandGestures'),
     demo: '',
   },
@@ -326,7 +326,7 @@ export const projects = [
       'Designed around clearer information flow and a centralised workflow rather than disconnected manual records.',
     ],
     details:
-      'This card intentionally avoids guessing the technology stack or naming specific modules until those details are confirmed. The next useful improvement is to list the exact workflows implemented—such as shift records, stock, sales, expenses, or reporting—only where they are part of the actual application.',
+      'Employees record nozzle readings, payments, credit, and expenses during a shift, then review and close it. Managers use shift records to monitor operations and review sales.',
     github: '',
     demo: '',
   },
