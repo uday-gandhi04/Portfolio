@@ -308,6 +308,8 @@ function ChapterContent({ chapter }) {
   );
 }
 
+const clampProgress = (value, min, max) => Math.min(max, Math.max(min, value));
+
 export default function JourneyExperience() {
   const scrollRef = useRef(null);
   const trackRef = useRef(null);
@@ -333,15 +335,56 @@ export default function JourneyExperience() {
       return undefined;
     }
 
+    // Map the camera to real chapter start positions instead of the
+    // overall page percentage. This keeps each 3D installation aligned
+    // even when a chapter becomes taller than one viewport.
+    const updateWorldProgress = () => {
+      const sections = chapterRefs.current
+        .slice(0, chapterCount)
+        .filter(Boolean);
+
+      if (sections.length < 2) {
+        progressRef.current.value = 0;
+        return;
+      }
+
+      const scrollTop = scroller.scrollTop;
+      const lastIndex = sections.length - 1;
+
+      if (scrollTop <= sections[0].offsetTop) {
+        progressRef.current.value = 0;
+        return;
+      }
+
+      for (let index = 0; index < lastIndex; index += 1) {
+        const start = sections[index].offsetTop;
+        const end = sections[index + 1].offsetTop;
+
+        if (scrollTop <= end || index === lastIndex - 1) {
+          const segmentLength = Math.max(1, end - start);
+          const localProgress = clampProgress(
+            (scrollTop - start) / segmentLength,
+            0,
+            1,
+          );
+          progressRef.current.value = (index + localProgress) / lastIndex;
+          return;
+        }
+      }
+
+      progressRef.current.value = 1;
+    };
+
+    scroller.addEventListener('scroll', updateWorldProgress, { passive: true });
+
     const context = gsap.context(() => {
       ScrollTrigger.create({
         scroller,
         trigger: track,
         start: 'top top',
         end: 'bottom bottom',
-        onUpdate: (self) => {
-          progressRef.current.value = self.progress;
-        },
+        onUpdate: updateWorldProgress,
+        onRefresh: updateWorldProgress,
       });
 
       chapterRefs.current.forEach((section, index) => {
@@ -540,13 +583,22 @@ export default function JourneyExperience() {
       });
     }, track);
 
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      updateWorldProgress();
+    });
 
     if (document.fonts?.ready) {
-      document.fonts.ready.then(() => ScrollTrigger.refresh());
+      document.fonts.ready.then(() => {
+        ScrollTrigger.refresh();
+        updateWorldProgress();
+      });
     }
 
-    return () => context.revert();
+    return () => {
+      scroller.removeEventListener('scroll', updateWorldProgress);
+      context.revert();
+    };
   }, [chapterCount]);
 
   const jumpToChapter = (index) => {
